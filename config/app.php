@@ -169,6 +169,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\FormServiceProvider::class,
+        App\Providers\PageServiceProvider::class,
 
         /*
          * Application Service Providers...

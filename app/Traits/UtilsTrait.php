@@ -13,7 +13,7 @@ trait UtilsTrait
      * @param null $text
      * @return string
      */
-    public function getPlaceholderImage($size = 150, $text = null)
+    public function getPlaceholderImage($text = null, $size = 150)
     {
         $url = 'https://via.placeholder.com/' . $size . '/ccc';
         if (!is_null($text)) {
