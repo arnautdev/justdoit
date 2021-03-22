@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\ExpenseSettings;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,9 @@ class ExpenseSettingsController extends Controller
      */
     public function create()
     {
-        //
+        $data['categoryOptions'] = (new Category())->selectedOptions(\request()->all());
+
+        return view('expense-settings.create', compact('data'));
     }
 
     /**
@@ -81,6 +84,24 @@ class ExpenseSettingsController extends Controller
      */
     public function destroy(ExpenseSettings $expenseSettings)
     {
-        //
+        if ($expenseSettings->exists && $expenseSettings->delete()) {
+            return back()->with('success', __('success-delete-item'));
+        }
+        return back()->with('error', __('error-delete-item'));
+    }
+
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    private function validator(Request $request)
+    {
+        return $request->validate([
+            'title' => 'request|minlength:3',
+            'userId' => 'request',
+            'amount' => 'request',
+            'isMonthly' => 'request',
+        ]);
     }
 }

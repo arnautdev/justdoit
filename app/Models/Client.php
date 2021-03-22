@@ -62,4 +62,12 @@ class Client extends Authenticatable
             $row->assignRole($role->id);
         });
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function expensesSettings()
+    {
+        return $this->hasMany(ExpenseSettings::class, 'userId', 'id');
+    }
 }

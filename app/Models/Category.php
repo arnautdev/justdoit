@@ -28,4 +28,15 @@ class Category extends Model
         return $query->orderBy('id', 'DESC');
     }
 
+    /**
+     * @param array $filters
+     * @return mixed
+     */
+    public function selectedOptions($filters = [])
+    {
+        return Category::filterBy($filters)
+            ->get()
+            ->pluck('title', 'id');
+    }
+
 }

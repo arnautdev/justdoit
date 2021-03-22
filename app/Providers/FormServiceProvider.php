@@ -52,4 +52,18 @@ class FormServiceProvider extends ServiceProvider
     {
         return view('components.form.input', compact('data'));
     }
+
+    public function amount($data = [])
+    {
+        return view('components.form.amount', compact('data'));
+    }
+
+    /**
+     * @param array $data
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function select($data = [])
+    {
+        return view('components.form.select', compact('data'));
+    }
 }

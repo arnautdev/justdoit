@@ -170,6 +170,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\FormServiceProvider::class,
         App\Providers\PageServiceProvider::class,
+        App\Providers\PanelServiceProvider::class,
 
         /*
          * Application Service Providers...

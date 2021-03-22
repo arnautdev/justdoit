@@ -16,6 +16,17 @@ class CreateExpenseSettingsTable extends Migration
         Schema::create('expense_settings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->string('title', 500);
+            $table->bigInteger('userId')->unsigned();
+            $table->bigInteger('categoryId')->unsigned();
+
+            $table->integer('amount')->default(0);
+            $table->enum('isMonthly', ['yes', 'no'])->default('no');
+
+            /// add foreign keys
+            $table->foreign('userId')->references('id')->on('clients');
+            $table->foreign('categoryId')->references('id')->on('categories');
         });
     }
 
