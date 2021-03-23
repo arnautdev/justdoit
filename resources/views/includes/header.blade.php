@@ -70,7 +70,7 @@
                 <li class="media">
                     <a href="javascript:;">
                         <div class="media-left">
-                            <img src="/assets/img/user/user-1.jpg" class="media-object" alt=""/>
+                            {{--                            <img src="" class="media-object" alt=""/>--}}
                             <i class="fab fa-facebook-messenger text-primary media-object-icon"></i>
                         </div>
                         <div class="media-body">
@@ -83,7 +83,7 @@
                 <li class="media">
                     <a href="javascript:;">
                         <div class="media-left">
-                            <img src="/assets/img/user/user-2.jpg" class="media-object" alt=""/>
+                            {{--                            <img src="/assets/img/user/user-2.jpg" class="media-object" alt=""/>--}}
                             <i class="fab fa-facebook-messenger text-primary media-object-icon"></i>
                         </div>
                         <div class="media-body">

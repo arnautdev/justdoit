@@ -39,7 +39,14 @@ class ExpenseSettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validator($request);
+        $expenseSettings = ExpenseSettings::create($data);
+        if ($expenseSettings->exists) {
+            return redirect()
+                ->route('expense-settings.edit', $expenseSettings->id)
+                ->with('success', __('success-create-message'));
+        }
+        return back()->with('error', __('error-create-message'));
     }
 
     /**
@@ -59,9 +66,12 @@ class ExpenseSettingsController extends Controller
      * @param \App\Models\ExpenseSettings $expenseSettings
      * @return \Illuminate\Http\Response
      */
-    public function edit(ExpenseSettings $expenseSettings)
+    public function edit(ExpenseSettings $expense_setting)
     {
-        //
+        $data['expense_settings'] = $expense_setting;
+        $data['categoryOptions'] = (new Category())->selectedOptions(\request()->all());
+
+        return view('expense-settings.edit', compact('data'));
     }
 
     /**
@@ -98,10 +108,11 @@ class ExpenseSettingsController extends Controller
     private function validator(Request $request)
     {
         return $request->validate([
-            'title' => 'request|minlength:3',
-            'userId' => 'request',
-            'amount' => 'request',
-            'isMonthly' => 'request',
+            'title' => 'required|min:3|max:15',
+            'userId' => 'required|numeric',
+            'categoryId' => 'required|numeric',
+            'amount' => 'required|numeric',
+            'isMonthly' => 'required',
         ]);
     }
 }

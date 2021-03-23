@@ -18,6 +18,14 @@
 
     $options = [];
     if(isset($data['options'])){
+        if(is_array($data['options'])){
+            $data['options'] = collect($data['options']);
+        }
+
+        if(isset($data['emptyOption']) && $data['emptyOption'] == true){
+            $data['options']->prepend(__('Select option ...'), '');
+        }
+
         $options = $data['options'];
     }
 @endphp
