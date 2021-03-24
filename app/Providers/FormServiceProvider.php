@@ -29,60 +29,60 @@ class FormServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('*', function ($view) {
-            if (!empty($view->data)) {
-                $this->vData = $view->data;
-            }
-        });
-
         view()->share('form', $this);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function setViewVars($args = [])
+    {
+        $this->vData = $args;
     }
 
     /**
      * @param array $data
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function submitButton($args = [])
+    public function submitButton($data = [])
     {
-        $data = array_merge($args, $this->vData);
-        return view('components.submit-button', compact('args'));
+        $data = array_merge($data, $this->vData);
+        return view('components.submit-button', compact('data'));
     }
 
     /**
      * @param $data
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function tableActions($args)
+    public function tableActions($data)
     {
-        $data = array_merge($args, $this->vData);
-        return view('components.form.table-actions', compact('args'));
+        $data = array_merge($data, $this->vData);
+        return view('components.form.table-actions', compact('data'));
     }
 
     /**
      * @param array $data
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function input($args = [])
+    public function input($data = [])
     {
-        $data = array_merge($args, $this->vData);
-        return view('components.form.input', compact('args'));
+        $data = array_merge($data, $this->vData);
+        return view('components.form.input', compact('data'));
     }
 
-    public function amount($args = [])
+    public function amount($data = [])
     {
-        dd($args, $this->vData);
-        $data = array_merge($args, $this->vData);
-        dd($data);
-        return view('components.form.amount', compact('args'));
+        $data = array_merge($data, $this->vData);
+        return view('components.form.amount', compact('data'));
     }
 
     /**
      * @param array $data
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function select($args = [])
+    public function select($data = [])
     {
-        $data = array_merge($args, $this->vData);
-        return view('components.form.select', compact('args'));
+        $data = array_merge($data, $this->vData);
+        return view('components.form.select', compact('data'));
     }
 }

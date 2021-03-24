@@ -1,6 +1,7 @@
 @php
 
     $name = $data['name'] ?? 'name';
+    $model = $data['model'] ?? '';
     $label = $data['label'] ?? ucfirst($name);
 
     $attrs['class'] = 'form-control ';
@@ -28,10 +29,23 @@
 
         $options = $data['options'];
     }
+
+    $value = '';
+    if(old($name)){
+        $value = old($name);
+    }
+
+    if(isset($data[$name])){
+        $value = $data[$name];
+    }
+
+    if(isset($model) && isset($data[$model][$name])){
+        $value = $data[$model][$name];
+    }
 @endphp
 
 <div class="form-group">
     {{ Form::label($name, __($label)) }}
-    {{ Form::select($name, $options, old($name), $attrs) }}
+    {{ Form::select($name, $options, $value, $attrs) }}
 </div>
 <!-- End ./form-group -->

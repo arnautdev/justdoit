@@ -15,8 +15,9 @@ class ExpenseSettingsController extends Controller
      */
     public function index()
     {
+        $data['expenses'] = ExpenseSettings::filterBy(\request()->all())->get();
 
-        return view('expense-settings.index');
+        return view('expense-settings.index', compact('data'));
     }
 
     /**
@@ -50,17 +51,6 @@ class ExpenseSettingsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\ExpenseSettings $expenseSettings
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ExpenseSettings $expenseSettings)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\ExpenseSettings $expenseSettings
@@ -81,9 +71,13 @@ class ExpenseSettingsController extends Controller
      * @param \App\Models\ExpenseSettings $expenseSettings
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ExpenseSettings $expenseSettings)
+    public function update(Request $request, ExpenseSettings $expense_setting)
     {
-        //
+        $data = $this->validator($request);
+        if ($expense_setting->update($data)) {
+            return back()->with('success', __('success-update-message'));
+        }
+        return back()->with('error', __('error-update-message'));
     }
 
     /**
@@ -92,9 +86,9 @@ class ExpenseSettingsController extends Controller
      * @param \App\Models\ExpenseSettings $expenseSettings
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ExpenseSettings $expenseSettings)
+    public function destroy(ExpenseSettings $expense_setting)
     {
-        if ($expenseSettings->exists && $expenseSettings->delete()) {
+        if ($expense_setting->exists && $expense_setting->delete()) {
             return back()->with('success', __('success-delete-item'));
         }
         return back()->with('error', __('error-delete-item'));

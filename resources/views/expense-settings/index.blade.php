@@ -23,7 +23,24 @@
         </tr>
         </thead>
 
-        <tbody></tbody>
+        <tbody>
+        @foreach($data['expenses'] as $expense)
+            <tr>
+                <td>{{ $expense->id }}</td>
+                <td>{{ $expense->created_at }}</td>
+                <td>{{ $expense->title }}</td>
+                <td>{{ __(ucfirst($expense->isMonthly)) }}</td>
+                <td>{{ $expense->amount }}</td>
+                <td>
+                    {{ $form->tableActions([
+                        'id' => $expense->id,
+                        'editRoute' => 'expense-settings.edit',
+                        'destroyRoute' => 'expense-settings.destroy',
+                    ]) }}
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
     </table>
 
     {{ $panel->end() }}

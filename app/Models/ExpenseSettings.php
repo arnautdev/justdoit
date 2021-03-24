@@ -37,6 +37,15 @@ class ExpenseSettings extends Model
     }
 
     /**
+     * @param $filters
+     * @param $query
+     */
+    public function scopeFilterBy($query, $filters)
+    {
+        return $query->orderBy('id', 'DESC');
+    }
+
+    /**
      * Get user
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
