@@ -34,6 +34,16 @@
                 ]
             ]) }}
 
+            {{ $form->select([
+                'name' => 'showOnDashboard',
+                'emptyOption' => true,
+                'required' => true,
+                'options' => [
+                    'yes' => 'Yes',
+                    'no' => 'No'
+                ]
+            ]) }}
+
 
             {{ $form->submitButton() }}
         </div>

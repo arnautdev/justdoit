@@ -62,9 +62,49 @@
 
 
     <div class="row">
+        @if($data['expenses']->count())
+            <div class="col-lg-6">
+                <div class="panel panel-inverse">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">{{ __('Dynamic expenses') }}</h4>
+                    </div>
+                    <div class="panel-body no-padding">
+                        <div class="col-12">
+                            <div class="row">
+                                @foreach($data['expenses']->chunk(4) as $expenses)
+                                    @foreach($expenses as $expense)
+                                        <div class="col-lg-3 col-6 no-padding">
+                                            <a href="#" class="btn btn-default w-100 h-100 text-center no-radius">
+                                                {{ $expense->title }}<br>
+                                                {{ $page->intToFloat($expense->amount) }}
+                                            </a>
+                                        </div>
+                                        <!-- End ./col-lg-3 col-6 -->
+                                    @endforeach
+                                @endforeach
+
+                                <div class="col-lg-3 col-6 no-padding align-middle">
+                                    <a href="#" class="btn btn-default w-100 h-100 text-center align-middle no-radius">
+                                        <i class="fa fa-plus"></i>&nbsp;
+                                        {{ __('ADD NEW') }}<br>
+                                        0.00
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End ./row -->
+                        </div>
+                    </div>
+                    <!-- End ./panel-body -->
+                </div>
+            </div>
+            <!-- End ./col.lg-6 -->
+        @endif
+    </div>
+
+    <div class="row">
         <div class="col-lg-6">
-            <div class="panel panel-inverse" data-sortable-id="index-8">
-                <div class="panel-heading ui-sortable-handle">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default"
                            data-click="panel-expand"><i
@@ -134,8 +174,8 @@
         <!-- End ./col-lg-6 -->
 
         <div class="col-lg-6">
-            <div class="panel panel-inverse" data-sortable-id="index-9">
-                <div class="panel-heading ui-sortable-handle">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default"
                            data-click="panel-expand"><i

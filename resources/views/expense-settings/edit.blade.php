@@ -41,6 +41,16 @@
                 ]
             ]) }}
 
+            {{ $form->select([
+                'name' => 'showOnDashboard',
+                'model' => 'expense_settings',
+                'emptyOption' => true,
+                'required' => true,
+                'options' => [
+                    'yes' => 'Yes',
+                    'no' => 'No'
+                ]
+            ]) }}
 
             {{ $form->submitButton() }}
         </div>

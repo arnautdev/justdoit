@@ -18,7 +18,9 @@
             <th>{{ __('Created at') }}</th>
             <th>{{ __('Title') }}</th>
             <th>{{ __('Is monthly') }}</th>
+            <th>{{ __('Show on dashboard') }}</th>
             <th>{{ __('Amount') }}</th>
+            <th>{{ __('Category') }}</th>
             <th>{{ __('Actions') }}</th>
         </tr>
         </thead>
@@ -30,7 +32,9 @@
                 <td>{{ $expense->created_at }}</td>
                 <td>{{ $expense->title }}</td>
                 <td>{{ __(ucfirst($expense->isMonthly)) }}</td>
-                <td>{{ $expense->amount }}</td>
+                <td>{{ __(ucfirst($expense->showOnDashboard)) }}</td>
+                <td>{{ $page->intToFloat($expense->amount) }}</td>
+                <td>{{ $expense->getCategory()->title }}</td>
                 <td>
                     {{ $form->tableActions([
                         'id' => $expense->id,

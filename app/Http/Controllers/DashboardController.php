@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ExpenseSettings;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -13,7 +14,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $data['expenses'] = ExpenseSettings::where('showOnDashboard', '=', 'yes')->get();
+
+        return view('dashboard.index', compact('data'));
     }
 
     /**

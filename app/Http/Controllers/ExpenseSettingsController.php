@@ -107,6 +107,7 @@ class ExpenseSettingsController extends Controller
             'categoryId' => 'required|numeric',
             'amount' => 'required|numeric',
             'isMonthly' => 'required',
+            'showOnDashboard' => 'required',
         ]);
     }
 }
