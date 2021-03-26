@@ -21,7 +21,7 @@ class CreateTodoListsTable extends Migration
             $table->bigInteger('userId')->unsigned();
             $table->string('title', 500);
             $table->string('description', 500);
-            
+
             /// add foreign key
             $table->foreign('userId')->references('id')->on('clients');
         });

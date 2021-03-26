@@ -24,24 +24,31 @@ class TodoListController extends Controller
      */
     public function create()
     {
-        //
+        return view('todo-list.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $create = $this->validator($request);
+        $create['toDate'] = date('Y-m-d');
+        $todoList = TodoList::create($create);
+
+        if ($todoList->exists) {
+            return back()->with('success', __('success-create-message'));
+        }
+        return back()->with('error', __('error-create-message'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TodoList  $todoList
+     * @param \App\Models\TodoList $todoList
      * @return \Illuminate\Http\Response
      */
     public function show(TodoList $todoList)
@@ -52,7 +59,7 @@ class TodoListController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TodoList  $todoList
+     * @param \App\Models\TodoList $todoList
      * @return \Illuminate\Http\Response
      */
     public function edit(TodoList $todoList)
@@ -63,8 +70,8 @@ class TodoListController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TodoList  $todoList
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\TodoList $todoList
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, TodoList $todoList)
@@ -75,11 +82,23 @@ class TodoListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TodoList  $todoList
+     * @param \App\Models\TodoList $todoList
      * @return \Illuminate\Http\Response
      */
     public function destroy(TodoList $todoList)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    private function validator(Request $request)
+    {
+        return $request->validate([
+            'title' => 'required',
+            'description' => 'required'
+        ]);
     }
 }
