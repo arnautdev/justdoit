@@ -36,7 +36,9 @@ class TodoListController extends Controller
     public function store(Request $request)
     {
         $create = $this->validator($request);
-        $create['toDate'] = date('Y-m-d');
+        if (!isset($create['toDate'])) {
+            $create['toDate'] = date('Y-m-d');
+        }
         $todoList = TodoList::create($create);
 
         if ($todoList->exists) {
@@ -98,7 +100,8 @@ class TodoListController extends Controller
     {
         return $request->validate([
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'toDate' => 'required|date',
         ]);
     }
 }

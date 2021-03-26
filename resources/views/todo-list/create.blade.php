@@ -14,6 +14,11 @@
                     'required' => true
                 ]) }}
 
+                {{ $form->datepicker([
+                    'name' => 'toDate',
+                    'required' => true
+                ]) }}
+
                 {{ $form->input([
                     'type' => 'textarea',
                     'name' => 'description',

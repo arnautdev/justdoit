@@ -7,6 +7,7 @@ try {
     require('jquery-slimscroll');
     require('parsleyjs/src/parsley');
 
+    require('../assets/js/demo/form-plugins.demo');
     require('./bootstrap');
 } catch (e) {
     console.log(e);

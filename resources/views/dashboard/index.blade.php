@@ -113,6 +113,72 @@
         <div class="col-lg-6">
             <div class="panel panel-inverse">
                 <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default"
+                           data-click="panel-expand"><i
+                                class="fa fa-expand"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success"
+                           data-click="panel-reload"><i
+                                class="fa fa-redo"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning"
+                           data-click="panel-collapse"><i
+                                class="fa fa-minus"></i></a>
+                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger"
+                           data-click="panel-remove"><i
+                                class="fa fa-times"></i></a>
+                    </div>
+                    <h4 class="panel-title">Goal progress</h4>
+                </div>
+                <div class="panel-body">
+                    /// content here
+                </div>
+            </div>
+        </div>
+        <!-- End ./col.lg-6 -->
+        
+    </div>
+    <!-- End ./row -->
+
+    <div class="row">
+
+        <div class="col-lg-6">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <div class="panel-heading-btn">
+                        <a href="{{ route('todo-list.create') }}" class="btn btn-xs btn-success add-new-task">
+                            <i class="fa fa-plus"></i>&nbsp;
+                            {{ __('Add new task') }}
+                        </a>
+                    </div>
+                    <h4 class="panel-title">Todo List</h4>
+                </div>
+                <div class="panel-body p-0">
+                    <ul class="todolist">
+                        @if($data['todoList']->count() > 0)
+                            @foreach($data['todoList'] as $todoList)
+                                <li class="@if($todoList->isDone()) active @endif">
+                                    <a href="javascript:;" class="todolist-container active" data-click="todolist">
+                                        <div class="todolist-input"><i class="fa fa-square"></i></div>
+                                        <div class="todolist-title w-100">
+                                            <label class="label label-default pull-right">
+                                                {{ $todoList->created_at }}
+                                            </label>
+                                            {{ $todoList->title }}<br>
+                                            <small>{{ $todoList->description }}</small>
+                                        </div>
+                                    </a>
+                                </li>
+                            @endforeach
+                        @endif
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End ./col-lg-6 -->
+
+        <div class="col-lg-6">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
                     <h4 class="panel-title">{{ __('Added today') }}</h4>
                 </div>
                 <div class="panel-body">
@@ -169,69 +235,6 @@
             </div>
         </div>
         <!-- End ./col-lg-6 -->
-    </div>
-
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="panel panel-inverse">
-                <div class="panel-heading">
-                    <div class="panel-heading-btn">
-                        <a href="{{ route('todo-list.create') }}" class="btn btn-xs btn-success add-new-task">
-                            <i class="fa fa-plus"></i>&nbsp;
-                            {{ __('Add new task') }}
-                        </a>
-                    </div>
-                    <h4 class="panel-title">Todo List</h4>
-                </div>
-                <div class="panel-body p-0">
-                    <ul class="todolist">
-                        @if($data['todoList']->count() > 0)
-                            @foreach($data['todoList'] as $todoList)
-                                <li class="@if($todoList->isDone()) active @endif">
-                                    <a href="javascript:;" class="todolist-container active" data-click="todolist">
-                                        <div class="todolist-input"><i class="fa fa-square"></i></div>
-                                        <div class="todolist-title w-100">
-                                            <label class="label label-default pull-right">
-                                                {{ $todoList->created_at }}
-                                            </label>
-                                            {{ $todoList->title }}<br>
-                                            <small>{{ $todoList->description }}</small>
-                                        </div>
-                                    </a>
-                                </li>
-                            @endforeach
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- End ./col-lg-6 -->
-
-        <div class="col-lg-6">
-            <div class="panel panel-inverse">
-                <div class="panel-heading">
-                    <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default"
-                           data-click="panel-expand"><i
-                                class="fa fa-expand"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success"
-                           data-click="panel-reload"><i
-                                class="fa fa-redo"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning"
-                           data-click="panel-collapse"><i
-                                class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger"
-                           data-click="panel-remove"><i
-                                class="fa fa-times"></i></a>
-                    </div>
-                    <h4 class="panel-title">Goal progress</h4>
-                </div>
-                <div class="panel-body">
-                    /// content here
-                </div>
-            </div>
-        </div>
-        <!-- End ./col.lg-6 -->
     </div>
     <!-- End ./row -->
 

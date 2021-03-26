@@ -40,6 +40,22 @@ class FormServiceProvider extends ServiceProvider
         $this->vData = $args;
     }
 
+    public function daterangepicker($data = [])
+    {
+        $data = array_merge($data, $this->vData);
+        return view('components.form.daterangepicker', compact('data'));
+    }
+
+    /**
+     * @param array $data
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function datepicker($data = [])
+    {
+        $data = array_merge($data, $this->vData);
+        return view('components.form.datepicker', compact('data'));
+    }
+
     /**
      * @param array $data
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
