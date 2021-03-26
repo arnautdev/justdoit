@@ -74,20 +74,30 @@
                                 @foreach($data['expenses']->chunk(4) as $expenses)
                                     @foreach($expenses as $expense)
                                         <div class="col-lg-3 col-6 no-padding">
-                                            <a href="#" class="btn btn-default w-100 h-100 text-center no-radius">
-                                                {{ $expense->title }}<br>
-                                                {{ $page->intToFloat($expense->amount) }}
-                                            </a>
+                                            @if($expense->isDynamicAmount())
+                                                <a href="{{ route('dynamic-price.create', $expense->id) }}"
+                                                   class="btn btn-default w-100 h-100 text-center no-radius add-expense-modal">
+                                                    {{ $expense->title }}<br>
+                                                    {{ $page->intToFloat($expense->amount) }}
+                                                </a>
+                                            @else
+                                                <a href="{{ route('static-price.store', $expense->id) }}"
+                                                   class="btn btn-default w-100 h-100 text-center no-radius">
+                                                    {{ $expense->title }}<br>
+                                                    {{ $page->intToFloat($expense->amount) }}
+                                                </a>
+                                            @endif
                                         </div>
                                         <!-- End ./col-lg-3 col-6 -->
                                     @endforeach
                                 @endforeach
 
                                 <div class="col-lg-3 col-6 no-padding align-middle">
-                                    <a href="#" class="btn btn-default w-100 h-100 text-center align-middle no-radius">
+                                    <a href="{{ route('new-expense.create') }}"
+                                       class="btn btn-default w-100 h-100 text-center align-middle no-radius add-expense-modal">
                                         <i class="fa fa-plus"></i>&nbsp;
                                         {{ __('ADD NEW') }}<br>
-                                        0.00
+                                        <small class="text-secondary">{{ __('expense') }}</small>
                                     </a>
                                 </div>
                             </div>
@@ -99,6 +109,66 @@
             </div>
             <!-- End ./col.lg-6 -->
         @endif
+
+        <div class="col-lg-6">
+            <div class="panel panel-inverse">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{{ __('Added today') }}</h4>
+                </div>
+                <div class="panel-body">
+                    @if($data['addedToday']->count() > 0)
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>{{ __('Title') }}</th>
+                                <th>{{ __('Created At') }}</th>
+                                <th>{{ __('Category') }}</th>
+                                <th>{{ __('Amount') }}</th>
+                                <th>{{ __('Actions') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($data['addedToday'] as $expense)
+                                <tr>
+                                    <td>{{ $expense->title }}</td>
+                                    <td>{{ $expense->created_at }}</td>
+                                    <td>{{ $expense->category()->first()->title }}</td>
+                                    <td>{{ $page->intToFloat($expense->amount) }}</td>
+                                    <td>
+                                        {{ Form::open(['route' => ['expenses.destroy', $expense->id]]) }}
+                                        @method('DELETE')
+
+                                        <a href="{{ route('expenses.edit', $expense->id) }}"
+                                           class="btn btn-xs btn-primary edit-expense">
+                                            <i class="fa fa-edit"></i>&nbsp;
+                                            {{ __('Edit') }}
+                                        </a>
+
+                                        <button type="submit" class="btn btn-xs btn-danger">
+                                            <i class="fa fa-trash"></i>&nbsp;
+                                            {{ __('Delete') }}
+                                        </button>
+                                        {{ Form::close() }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <th class="text-right">{{ __('Total for today') }}</th>
+                                <th>{{ $page->intToFloat($data['addedToday']->sum('amount')) }}</th>
+                                <td></td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    @endif
+                </div>
+                <!-- End ./panel-body -->
+            </div>
+        </div>
+        <!-- End ./col-lg-6 -->
     </div>
 
     <div class="row">
@@ -200,4 +270,50 @@
         <!-- End ./col.lg-6 -->
     </div>
     <!-- End ./row -->
+
+
+    @push('scripts')
+        <script type="text/javascript">
+            $(function () {
+                $(document).on('click', '.add-expense-modal', function (e) {
+                    e.preventDefault();
+                    var $href = $(this).attr('href');
+                    $.get($href, null, function ($res) {
+                        $('#add-expense-modal').remove();
+
+                        $('body').append($res);
+                        $('#add-expense-modal').modal('show');
+                        $('#add-expense-form').parsley();
+                    });
+                });
+
+                $(document).on('click', '.edit-expense', function (e) {
+                    e.preventDefault();
+                    var $href = $(this).attr('href');
+                    $.get($href, null, function ($res) {
+                        $('#edit-expense-modal').remove();
+
+                        $('body').append($res);
+                        $('#edit-expense-modal').modal('show');
+                        $('#edit-expense-form').parsley();
+                    });
+                });
+            });
+
+            $(document).on('focusout', 'input[name="amount"]', function () {
+                var $val = $(this).val();
+                if (!Number.isInteger($val)) {
+                    $val = parseFloat($val);
+                } else {
+                    $val = parseInt($val);
+                }
+
+                if (isNaN($val)) {
+                    $val = 0;
+                }
+
+                $(this).val($val.toFixed(2));
+            });
+        </script>
+    @endpush
 @endsection

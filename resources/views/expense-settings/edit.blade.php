@@ -5,7 +5,7 @@
 
     {{ Form::open(['route' => ['expense-settings.update', $data['expense_settings']->id], 'data-parsley-validate' => 'true']) }}
     @method('PUT')
-    {{ $form->setViewVars($data) }}
+    {{ $form->setData($data) }}
 
     <input type="hidden" name="userId" value="{{ auth()->user()->id }}"/>
     <div class="form-horizontal row">

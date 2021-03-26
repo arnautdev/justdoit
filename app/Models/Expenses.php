@@ -8,53 +8,47 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ExpenseSettings extends Model
+class Expenses extends Model
 {
     use HasFactory,
         SoftDeletes,
-        UtilsTrait,
-        UserIdFilterTrait;
+        UserIdFilterTrait,
+        UtilsTrait;
+
 
     /**
      * @var array
      */
     protected $fillable = [
-        'title',
         'userId',
         'categoryId',
+        'expenseSettingsId',
+        'toDate',
         'amount',
-        'isMonthly',
-        'showOnDashboard',
+        'title',
+        'description',
     ];
 
     /**
-     * @return bool
-     */
-    public function isDynamicAmount()
-    {
-        return ($this->amount == 0);
-    }
-
-    /**
-     * @param $filters
      * @param $query
+     * @param $filters
+     * @return mixed
      */
-    public function scopeFilterBy($query, $filters)
+    public static function scopeFilterBy($query, $filters)
     {
         return $query->orderBy('id', 'DESC');
     }
 
     /**
-     * @return Model|\Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getCategory()
+    public function category()
     {
-        return $this->belongsTo(Category::class, 'categoryId', 'id')->firstOrNew([], []);
+        return $this->belongsTo(Category::class, 'categoryId', 'id');
     }
 
     /**
-     * Get user
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {

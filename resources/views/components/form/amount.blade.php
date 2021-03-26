@@ -39,7 +39,7 @@
 
 @push('scripts')
     <script type="text/javascript">
-        $('input[name="{{ $name }}"]').focusout(function () {
+        $(document).on('focusout', 'input[name="{{ $name }}"]', function () {
             var $val = $(this).val();
             if (!Number.isInteger($val)) {
                 $val = parseFloat($val);

@@ -26,4 +26,14 @@ Route::middleware(['auth:client', 'auth'])->group(function () {
     Route::resource('category', 'CategoryController');
     Route::resource('group', 'GroupController');
     Route::resource('expense-settings', 'ExpenseSettingsController');
+
+    Route::get('/expense-dynamic-price/{expenseSettings}/create', 'CreateDynamicPriceExpenseController@create')->name('dynamic-price.create');
+    Route::post('/expense-dynamic-price/{expenseSettings}/store', 'CreateDynamicPriceExpenseController@store')->name('dynamic-price.store');
+
+    Route::get('/expense-static-price/{expenseSettings}/create', 'CreateStaticPriceExpenseController@create')->name('static-price.create');
+    Route::get('/expense-static-price/{expenseSettings}/store', 'CreateStaticPriceExpenseController@store')->name('static-price.store');
+
+    Route::resource('new-expense', 'CreateNewExpenseController')->only(['create', 'store']);
+
+    Route::resource('expenses', 'ExpensesController');
 });

@@ -35,7 +35,7 @@ class FormServiceProvider extends ServiceProvider
     /**
      * @param array $args
      */
-    public function setViewVars($args = [])
+    public function setData($args = [])
     {
         $this->vData = $args;
     }
