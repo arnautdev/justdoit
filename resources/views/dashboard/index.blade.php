@@ -135,7 +135,7 @@
             </div>
         </div>
         <!-- End ./col.lg-6 -->
-        
+
     </div>
     <!-- End ./row -->
 
@@ -157,7 +157,9 @@
                         @if($data['todoList']->count() > 0)
                             @foreach($data['todoList'] as $todoList)
                                 <li class="@if($todoList->isDone()) active @endif">
-                                    <a href="javascript:;" class="todolist-container active" data-click="todolist">
+                                    <a href="{{ route('todo-list.update', $todoList->id) }}"
+                                       class="todolist-container active"
+                                       data-click="todolist">
                                         <div class="todolist-input"><i class="fa fa-square"></i></div>
                                         <div class="todolist-title w-100">
                                             <label class="label label-default pull-right">
@@ -182,6 +184,9 @@
                     <h4 class="panel-title">{{ __('Added today') }}</h4>
                 </div>
                 <div class="panel-body">
+
+                    <input type="text" class="form-control datepicker-default"/>
+
                     @if($data['addedToday']->count() > 0)
                         <table class="table table-striped table-bordered">
                             <thead>
@@ -251,6 +256,7 @@
                         $('body').append($res);
                         $('#add-new-task-modal').modal('show');
                         $('#add-new-task-form').parsley();
+                        handleDatepicker();
                     });
                 });
 

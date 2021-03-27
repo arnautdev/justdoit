@@ -256,13 +256,22 @@ var handleDashboardDatepicker = function () {
 
 var handleDashboardTodolist = function () {
     "use strict";
-    $('[data-click=todolist]').click(function () {
+    $('[data-click=todolist]').click(function (event) {
+        event.preventDefault();
+
         var targetList = $(this).closest('li');
-        if ($(targetList).hasClass('active')) {
-            $(targetList).removeClass('active');
-        } else {
-            $(targetList).addClass('active');
-        }
+        var $href = $(this).attr('href');
+        $.ajax({
+            url: $href,
+            type: 'PUT',
+            success: function ($resp) {
+                if ($(targetList).hasClass('active')) {
+                    $(targetList).removeClass('active');
+                } else {
+                    $(targetList).addClass('active');
+                }
+            }
+        });
     });
 };
 
@@ -287,12 +296,12 @@ var Dashboard = function () {
         //main function
         init: function () {
             // handleDashboardGritterNotification();
-            handleInteractiveChart();
+            // handleInteractiveChart();
             // handleDashboardSparkline();
-            handleDonutChart();
+            // handleDonutChart();
             handleDashboardTodolist();
-            handleVectorMap();
-            handleDashboardDatepicker();
+            // handleVectorMap();
+            // handleDashboardDatepicker();
         }
     };
 }();

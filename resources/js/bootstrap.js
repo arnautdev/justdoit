@@ -1,4 +1,33 @@
-window._ = require('lodash');
+"use strict";
+try {
+    window.$ = window.jQuery = require('jquery');
+    window.Cookies = require('js-cookie');
+
+    require('jqueryui');
+    require('bootstrap');
+    require('jquery-slimscroll');
+    require('parsleyjs/src/parsley');
+
+    require('bootstrap-datepicker/dist/js/bootstrap-datepicker')
+
+    // require('../assets/js/demo/form-plugins.demo');
+    // require('../assets/js/theme/default');
+    // require('../assets/js/apps');
+    // require('../assets/js/demo/dashboard');
+} catch (e) {
+    console.log(e);
+}
+
+
+if ($('meta[name="csrf-token"]').length > 0) {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+} else {
+    console.log('Error meta[name="csrf-token"] not found in header.');
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

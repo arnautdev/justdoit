@@ -48,17 +48,6 @@ class TodoListController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\TodoList $todoList
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TodoList $todoList)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\TodoList $todoList
@@ -76,9 +65,17 @@ class TodoListController extends Controller
      * @param \App\Models\TodoList $todoList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TodoList $todoList)
+    public function update(Request $request, TodoList $todo_list)
     {
-        //
+        if ($todo_list->isDone()) {
+            $todo_list->update(['isDone' => 'no']);
+        } else {
+            $todo_list->update(['isDone' => 'yes']);
+        }
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 
     /**

@@ -7,6 +7,8 @@
 @import "../assets/css/default/style-responsive.css";
 @import "../assets/css/default/theme/default.css";
 
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.css";
+
 .no-padding {
     padding: 0px !important;
 }

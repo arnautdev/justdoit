@@ -32,6 +32,9 @@ var handleDatepicker = function () {
     $('#datepicker-default').datepicker({
         todayHighlight: true
     });
+    $('.datepicker-default').datepicker({
+        todayHighlight: true
+    });
     $('#datepicker-inline').datepicker({
         todayHighlight: true
     });

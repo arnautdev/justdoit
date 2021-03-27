@@ -5,7 +5,8 @@
     $type = $data['type'] ?? 'text';
     $label = $data['label'] ?? ucfirst($name);
 
-    $attrs['class'] = 'form-control date-picker';
+    $attrs['class'] = 'form-control datepicker-default';
+    $attrs['autofill'] = false;
     if(isset($data['class'])){
         $attrs['class'] = $attrs['class'] . $data['class'];
     }
@@ -18,7 +19,7 @@
         $attrs = array_merge($attrs, $data['attrs']);
     }
 
-    $value = '';
+    $value = date('Y-m-d');
     if(old($name)){
         $value = old($name);
     }
