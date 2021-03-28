@@ -28,6 +28,13 @@
                     </tr>
                 @endforeach
                 </tbody>
+                <tfoot>
+                <tr>
+                    <th class="text-right">{{ __('Total amount') }}</th>
+                    <th>{{ $page->intToFloat($data['expenses']->sum('amount')) }}</th>
+                    <td></td>
+                </tr>
+                </tfoot>
             </table>
             {{ $panel->end() }}
         </div>
