@@ -14,7 +14,8 @@ class GoalController extends Controller
      */
     public function index()
     {
-        //
+        $data = [];
+        return view('goal.index', compact('data'));
     }
 
     /**
@@ -24,13 +25,13 @@ class GoalController extends Controller
      */
     public function create()
     {
-        //
+        return view('goal.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +42,7 @@ class GoalController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Goal  $goal
+     * @param \App\Models\Goal $goal
      * @return \Illuminate\Http\Response
      */
     public function show(Goal $goal)
@@ -52,7 +53,7 @@ class GoalController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Goal  $goal
+     * @param \App\Models\Goal $goal
      * @return \Illuminate\Http\Response
      */
     public function edit(Goal $goal)
@@ -63,8 +64,8 @@ class GoalController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Goal  $goal
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Goal $goal
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Goal $goal)
@@ -75,7 +76,7 @@ class GoalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Goal  $goal
+     * @param \App\Models\Goal $goal
      * @return \Illuminate\Http\Response
      */
     public function destroy(Goal $goal)

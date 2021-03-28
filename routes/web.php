@@ -22,6 +22,7 @@ Route::middleware(['auth:client', 'auth'])->group(function () {
     Route::resource('dashboard', 'DashboardController');
     Route::resource('client', 'ClientController');
     Route::resource('todo-list', 'TodoListController');
+    Route::resource('goal', 'GoalController');
     Route::resource('administrator', 'AdministratorController');
     Route::resource('monthly-reports', 'MonthlyReportsController');
     Route::resource('category', 'CategoryController');

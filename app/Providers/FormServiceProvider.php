@@ -33,6 +33,38 @@ class FormServiceProvider extends ServiceProvider
     }
 
     /**
+     * @param array $data
+     * @param string $class
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function button($title = '', $icon = 'fa fa-save', $class = 'btn-sm btn-primary', $args = [])
+    {
+        $data['title'] = $title;
+        $data['icon'] = $icon;
+        $data['btnClass'] = $class;
+        $data = array_merge($data, $this->vData);
+        return view('components.form.button', compact('data'));
+    }
+
+    /**
+     * @param string $title
+     * @param null $route
+     * @param string $icon
+     * @param string $class
+     * @param array $args
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function href($title = '', $route = null, $icon = 'fa fa-save', $class = 'btn-sm btn-primary', $args = [])
+    {
+        $data['title'] = $title;
+        $data['icon'] = $icon;
+        $data['btnClass'] = $class;
+        $data['route'] = $route;
+        $data = array_merge($data, $this->vData);
+        return view('components.form.button', compact('data'));
+    }
+
+    /**
      * @param array $args
      */
     public function setData($args = [])

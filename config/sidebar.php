@@ -61,7 +61,7 @@ return [
         [
             'icon' => 'fa fa-chart-line',
             'title' => 'My Goals',
-            'route-name' => 'javascript:;',
+            'route-name' => 'goal.index',
             'caret' => false,
         ],
         [
