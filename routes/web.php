@@ -37,4 +37,5 @@ Route::middleware(['auth:client', 'auth'])->group(function () {
     Route::resource('new-expense', 'CreateNewExpenseController')->only(['create', 'store']);
 
     Route::resource('expenses', 'ExpensesController');
+    Route::resource('category-expenses', 'CategoryExpensesController')->only('show');
 });

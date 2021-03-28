@@ -55,6 +55,7 @@ return [
             'icon' => 'fa fa-chart-pie',
             'title' => 'Monthly reports',
             'route-name' => 'monthly-reports.index',
+            'active-routes' => ['category-expenses.*', 'monthly-reports.*'],
             'caret' => false,
         ],
         [
@@ -66,7 +67,7 @@ return [
         [
             'icon' => 'fa fa-list',
             'title' => 'TODO list history',
-            'route-name' => 'javascript:;',
+            'route-name' => 'todo-list.index',
             'caret' => false,
         ],
         [

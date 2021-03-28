@@ -9,6 +9,21 @@ use Spatie\Permission\Models\Permission;
 trait UtilsTrait
 {
     /**
+     * @param $date
+     * @param string $format
+     */
+    public function sqlDate($date = null, $format = 'Y-m-d H:i:s')
+    {
+        if (is_null($date)) {
+            $date = date('Y-m-d H:i:s');
+        }
+        
+        $date = date('Y-m-d H:i:s', strtotime($date));
+
+        return new \DateTime($date);
+    }
+
+    /**
      * @param int $size
      * @param null $text
      * @return string

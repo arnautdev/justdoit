@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\TodoList;
+use App\Traits\UtilsTrait;
 use Illuminate\Http\Request;
 
 class TodoListController extends Controller
 {
+    use UtilsTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,15 @@ class TodoListController extends Controller
      */
     public function index()
     {
-        //
+        $request = \request();
+        if (!$request->get('toDate', false)) {
+            $dates = $this->sqlDate()->format('Y-m-01') . ' - ' . $this->sqlDate()->format('Y-m-d');
+            $request->merge(['toDate' => $dates]);
+        }
+
+        $data['todo-list'] = TodoList::filterBy($request->all())->get();
+
+        return view('todo-list.index', compact('data'));
     }
 
     /**

@@ -184,9 +184,6 @@
                     <h4 class="panel-title">{{ __('Added today') }}</h4>
                 </div>
                 <div class="panel-body">
-
-                    <input type="text" class="form-control datepicker-default"/>
-
                     @if($data['addedToday']->count() > 0)
                         <table class="table table-striped table-bordered">
                             <thead>

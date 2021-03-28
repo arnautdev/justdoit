@@ -128,6 +128,19 @@ class SidebarServiceProvider extends ServiceProvider
             }
         }
 
+        if (isset($row['active-routes'])) {
+            $isActive = false;
+            foreach ($row['active-routes'] as $activeRoute) {
+                if (request()->routeIs($activeRoute)) {
+                    $isActive = true;
+                    break;
+                }
+            }
+            if ($isActive) {
+                return 'active';
+            }
+        }
+
         $route = explode('.', $row['route-name']);
         $route = $route[0] . '.*';
 

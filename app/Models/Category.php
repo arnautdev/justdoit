@@ -31,6 +31,15 @@ class Category extends Model
     }
 
     /**
+     * @param $request
+     * @return mixed
+     */
+    public function getExpenses($request)
+    {
+        return Expenses::where('categoryId', '=', $this->id)->filterBy($request);
+    }
+
+    /**
      * @param array $filters
      * @return mixed
      */
