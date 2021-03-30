@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var handleWidgetPageDisplay = function() {
@@ -17,12 +17,12 @@ var handleWidgetPageDisplay = function() {
 		
 		if (targetTheme == 'dark') {
 			$('[data-id="widget"]').addClass('inverse-mode');
-			$(darkBtn).find('.fa').addClass('text-primary');
-			$(lightBtn).find('.fa').removeClass('text-primary');
+			$(darkBtn).find('.fa').addClass('text-blue');
+			$(lightBtn).find('.fa').removeClass('text-blue');
 		} else {
 			$('[data-id="widget"]').removeClass('inverse-mode');
-			$(darkBtn).find('.fa').removeClass('text-primary');
-			$(lightBtn).find('.fa').addClass('text-primary');
+			$(darkBtn).find('.fa').removeClass('text-blue');
+			$(lightBtn).find('.fa').addClass('text-blue');
 		}
 		$('[data-id="widget-elm"]').each(function() {
 			var targetClass = $(this).attr(attrClass);
@@ -111,3 +111,7 @@ var Widget = function () {
 			}
     };
 }();
+
+$(document).ready(function() {
+	Widget.init();
+});

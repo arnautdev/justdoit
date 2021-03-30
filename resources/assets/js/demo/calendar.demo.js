@@ -1,105 +1,133 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var handleCalendarDemo = function() {
-	$('#external-events .fc-event').each(function() {
-		$(this).data('event', {
-			title: $.trim($(this).text()), // use the element's text as the event title
-			stick: true, // maintain when user navigates (see docs on the renderEvent method)
-			color: ($(this).attr('data-color')) ? $(this).attr('data-color') : ''
-		});
-		$(this).draggable({
-			zIndex: 999,
-			revert: true,      // will cause the event to go back to its
-			revertDuration: 0  //  original position after the drag
-		});
-	});
-    
-	var date = new Date();
-	var currentYear = date.getFullYear();
-	var currentMonth = date.getMonth() + 1;
-			currentMonth = (currentMonth < 10) ? '0' + currentMonth : currentMonth;
-    
-	$('#calendar').fullCalendar({
-		header: {
-			left: 'month,agendaWeek,agendaDay',
-			center: 'title',
-			right: 'prev,today,next '
-		},
-		droppable: true, // this allows things to be dropped onto the calendar
-		drop: function() {
-			$(this).remove();
-		},
-		selectable: true,
-		selectHelper: true,
-		select: function(start, end) {
-			var title = prompt('Event Title:');
-			var eventData;
-			if (title) {
-				eventData = {
-					title: title,
-					start: start,
-					end: end
-				};
-				$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+	// external events
+	var containerEl = document.getElementById('external-events');
+  var Draggable = FullCalendarInteraction.Draggable;
+	new Draggable(containerEl, {
+    itemSelector: '.fc-event',
+    eventData: function(eventEl) {
+      return {
+        title: eventEl.innerText,
+        color: eventEl.getAttribute('data-color')
+      };
+    }
+  });
+  
+  // fullcalendar
+  
+  var d = new Date();
+	var month = d.getMonth() + 1;
+	    month = (month < 10) ? '0' + month : month;
+	var year = d.getFullYear();
+	var day = d.getDate();
+	var today = moment().startOf('day');
+  var calendarElm = document.getElementById('calendar');
+	var calendar = new FullCalendar.Calendar(calendarElm, {
+    headerToolbar: {
+      left: 'dayGridMonth,timeGridWeek,timeGridDay',
+      center: 'title',
+      right: 'prev,next today'
+    },
+    buttonText: {
+    	today:    'Today',
+			month:    'Month',
+			week:     'Week',
+			day:      'Day'
+    },
+    initialView: 'dayGridMonth',
+    editable: true,
+    droppable: true,
+  	themeSystem: 'bootstrap',
+		views: {
+			timeGrid: {
+				eventLimit: 6 // adjust to 6 only for timeGridWeek/timeGridDay
 			}
-			$('#calendar').fullCalendar('unselect');
 		},
-		editable: true,
-		eventLimit: true, // allow "more" link when too many events
-		events: [{
-			title: 'All Day Event',
-			start: currentYear + '-'+ currentMonth +'-01',
-			color: COLOR_GREEN
-		}, {
-			title: 'Long Event',
-			start: currentYear + '-'+ currentMonth +'-07',
-			end: currentYear + '-'+ currentMonth +'-10'
-		}, {
-			id: 999,
-			title: 'Repeating Event',
-			start: currentYear + '-'+ currentMonth +'-09T16:00:00',
-			color: COLOR_GREEN
-		}, {
-			id: 999,
-			title: 'Repeating Event',
-			start: currentYear + '-'+ currentMonth +'-16T16:00:00'
-		}, {
-			title: 'Conference',
-			start: currentYear + '-'+ currentMonth +'-11',
-			end: currentYear + '-'+ currentMonth +'-13'
-		}, {
-			title: 'Meeting',
-			start: currentYear + '-'+ currentMonth +'-12T10:30:00',
-			end: currentYear + '-'+ currentMonth +'-12T12:30:00',
-			color: COLOR_GREEN
-		}, {
-			title: 'Lunch',
-			start: currentYear + '-'+ currentMonth +'-12T12:00:00',
+  	events: [{
+			title: 'Trip to London',
+			start: year + '-'+ month +'-01',
+			end: year + '-'+ month +'-05',
+			color: COLOR_TEAL
+		},{
+			title: 'Meet with Jess Lau',
+			start: year + '-'+ month +'-02T06:00:00',
 			color: COLOR_BLUE
-		}, {
-			title: 'Meeting',
-			start: currentYear + '-'+ currentMonth +'-12T14:30:00'
-		}, {
-			title: 'Happy Hour',
-			start: currentYear + '-'+ currentMonth +'-12T17:30:00'
-		}, {
-			title: 'Dinner',
-			start: currentYear + '-'+ currentMonth +'-12T20:00:00'
-		}, {
-			title: 'Birthday Party',
-			start: currentYear + '-'+ currentMonth +'-13T07:00:00'
-		}, {
-			title: 'Click for Google',
-			url: 'http://google.com/',
-			start: currentYear + '-'+ currentMonth +'-28',
+		},{
+			title: 'Mobile Apps Brainstorming',
+			start: year + '-'+ month +'-10',
+			end: year + '-'+ month +'-12',
+			color: COLOR_PINK
+		},{
+			title: 'Stonehenge, Windsor Castle, Oxford',
+			start: year + '-'+ month +'-05T08:45:00',
+			end: year + '-'+ month +'-06T18:00',
+			color: COLOR_INDIGO
+		},{
+			title: 'Paris Trip',
+			start: year + '-'+ month +'-12',
+			end: year + '-'+ month +'-16'
+		},{
+			title: 'Domain name due',
+			start: year + '-'+ month +'-15',
+			color: COLOR_BLUE
+		},{
+			title: 'Cambridge Trip',
+			start: year + '-'+ month +'-19'
+		},{
+			title: 'Visit Apple Company',
+			start: year + '-'+ month +'-22T05:00:00',
+			color: COLOR_GREEN
+		},{
+			title: 'Exercise Class',
+			start: year + '-'+ month +'-22T07:30:00',
+			color: COLOR_ORANGE
+		},{
+			title: 'Live Recording',
+			start: year + '-'+ month +'-22T03:00:00',
+			color: COLOR_BLUE
+		},{
+			title: 'Announcement',
+			start: year + '-'+ month +'-22T15:00:00',
 			color: COLOR_RED
+		},{
+			title: 'Dinner',
+			start: year + '-'+ month +'-22T18:00:00'
+		},{
+			title: 'New Android App Discussion',
+			start: year + '-'+ month +'-25T08:00:00',
+			end: year + '-'+ month +'-25T10:00:00',
+			color: COLOR_RED
+		},{
+			title: 'Marketing Plan Presentation',
+			start: year + '-'+ month +'-25T12:00:00',
+			end: year + '-'+ month +'-25T14:00:00',
+			color: COLOR_BLUE
+		},{
+			title: 'Chase due',
+			start: year + '-'+ month +'-26T12:00:00',
+			color: COLOR_ORANGE
+		},{
+			title: 'Heartguard',
+			start: year + '-'+ month +'-26T08:00:00',
+			color: COLOR_ORANGE
+		},{
+			title: 'Lunch with Richard',
+			start: year + '-'+ month +'-28T14:00:00',
+			color: COLOR_BLUE
+		},{
+			title: 'Web Hosting due',
+			start: year + '-'+ month +'-30',
+			color: COLOR_BLUE
 		}]
-	});
+  });
+  
+	calendar.render();
 };
 
 var Calendar = function () {
@@ -111,3 +139,7 @@ var Calendar = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	Calendar.init();
+});

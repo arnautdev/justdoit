@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var handleDataTableButtons = function() {
@@ -10,7 +10,7 @@ var handleDataTableButtons = function() {
     
 	if ($('#data-table-buttons').length !== 0) {
 		$('#data-table-buttons').DataTable({
-			dom: 'Bfrtip',
+			dom: '<"row"<"col-sm-5"B><"col-sm-7"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>',
 			buttons: [
 				{ extend: 'copy', className: 'btn-sm' },
 				{ extend: 'csv', className: 'btn-sm' },
@@ -32,3 +32,7 @@ var TableManageButtons = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	TableManageButtons.init();
+});

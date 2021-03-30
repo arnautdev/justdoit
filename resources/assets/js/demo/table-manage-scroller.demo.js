@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var handleDataTableScroller = function() {
@@ -10,7 +10,7 @@ var handleDataTableScroller = function() {
     
 	if ($('#data-table-scroller').length !== 0) {
 		$('#data-table-scroller').DataTable({
-			ajax:           "../assets/plugins/DataTables/json/scroller-demo.json",
+			ajax:           "../assets/js/demo/json/scroller_demo.json",
 			deferRender:    true,
 			scrollY:        300,
 			scrollCollapse: true,
@@ -29,3 +29,7 @@ var TableManageScroller = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	TableManageScroller.init();
+});

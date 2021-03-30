@@ -9,7 +9,7 @@ services:
       - ${APP_PATH_HOST}:${APP_PATH_CONTAINER}
       - ${APP_PATH_HOST}/docker/web/sites-enabled/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
     ports:
-      - 8080:80
+      - 8081:80
     working_dir: ${APP_PATH_CONTAINER}
 
   db:
@@ -22,7 +22,7 @@ services:
     image: phpmyadmin
     restart: always
     ports:
-      - 7080:80
+      - 7081:80
 
   composer:
     image: composer

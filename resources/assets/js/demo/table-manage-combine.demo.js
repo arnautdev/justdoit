@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var handleDataTableCombinationSetting = function() {
@@ -10,7 +10,7 @@ var handleDataTableCombinationSetting = function() {
     
 	if ($('#data-table-combine').length !== 0) {
 		var options = {
-			dom: 'lBfrtip',
+			dom: '<"dataTables_wrapper dt-bootstrap"<"row"<"col-xl-7 d-block d-sm-flex d-xl-block justify-content-center"<"d-block d-lg-inline-flex mr-0 mr-sm-3"l><"d-block d-lg-inline-flex"B>><"col-xl-5 d-flex d-xl-block justify-content-center"fr>>t<"row"<"col-sm-5"i><"col-sm-7"p>>>',
 			buttons: [
 				{ extend: 'copy', className: 'btn-sm' },
 				{ extend: 'csv', className: 'btn-sm' },
@@ -44,3 +44,7 @@ var TableManageCombine = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	TableManageCombine.init();
+});

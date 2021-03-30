@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 function showFlotTooltip(x, y, contents) {
@@ -38,17 +38,17 @@ var handleBasicChart = function () {
 			xaxis: {
 				min: 0,
 				max: 6,
-				tickColor: COLOR_GREY_LIGHTER,
+				tickColor: COLOR_SILVER_TRANSPARENT_3,
 			},
 			yaxis: {
 				min: -2,
 				max: 2,
-				tickColor: COLOR_GREY_LIGHTER
+				tickColor: COLOR_SILVER_TRANSPARENT_3
 			},
 			grid: {
-				borderColor: COLOR_GREY_LIGHTER,
+				borderColor: COLOR_SILVER_TRANSPARENT_5,
 				borderWidth: 1,
-				backgroundColor: COLOR_SILVER
+				backgroundColor: COLOR_SILVER_TRANSPARENT_1
 			}
 		});
 	}
@@ -83,9 +83,9 @@ var handleStackedChart = function () {
     
 	var xData = [{
 		data:d1,
-		color: COLOR_BLACK_LIGHTER,
+		color: COLOR_DARK_LIGHTER,
 		label: 'China',
-		bars: { fillColor: COLOR_BLACK_LIGHTER }
+		bars: { fillColor: COLOR_DARK_LIGHTER }
 	}, {
 		data:d2,
 		color: COLOR_GREY,
@@ -115,23 +115,23 @@ var handleStackedChart = function () {
 
 	$.plot('#stacked-chart', xData, { 
 		xaxis: {  
-			tickColor: COLOR_GREY_LIGHTER,  
+			tickColor: COLOR_SILVER_TRANSPARENT_3,  
 			ticks: [[0, 'MON'], [1, 'TUE'], [2, 'WED'], [3, 'THU'], [4, 'FRI'], [5, 'SAT']],
 			autoscaleMargin: 0.05
 		},
-		yaxis: { tickColor: COLOR_GREY_LIGHTER, ticksLength: 5},
+		yaxis: { tickColor: COLOR_SILVER_TRANSPARENT_3, ticksLength: 5},
 		grid: { 
 			hoverable: true, 
-			tickColor: COLOR_GREY_LIGHTER,
+			tickColor: COLOR_SILVER_TRANSPARENT_3,
 			borderWidth: 1,
-			borderColor: COLOR_GREY_LIGHTER,
-			backgroundColor: COLOR_SILVER_LIGHTER
+			borderColor: COLOR_SILVER_TRANSPARENT_5,
+			backgroundColor: COLOR_SILVER_TRANSPARENT_1
 		},
 		series: {
 			stack: true,
 			lines: { show: false, fill: false, steps: false },
 			bars: { show: true, barWidth: 0.6, align: 'center', fillColor: null },
-			highlightColor: COLOR_BLACK_TRANSPARENT_9
+			highlightColor: COLOR_DARK_TRANSPARENT_9
 		},
 		legend: {
 			show: true,
@@ -200,7 +200,7 @@ var handleTrackingChart = function () {
 	}
 	if ($('#tracking-chart').length !== 0) {
 		var plot = $.plot($('#tracking-chart'), [ 
-			{ data: sin, label: 'Series1', color: COLOR_BLACK_LIGHTER, shadowSize: 0},
+			{ data: sin, label: 'Series1', color: COLOR_DARK_LIGHTER, shadowSize: 0},
 			{ data: cos, label: 'Series2', color: COLOR_BLUE, shadowSize: 0} 
 		], {
 			series: { 
@@ -213,11 +213,14 @@ var handleTrackingChart = function () {
 			grid: { 
 				hoverable: true, 
 				autoHighlight: false, 
-				borderColor: COLOR_GREY_LIGHTER, 
+				borderColor: COLOR_SILVER_TRANSPARENT_5, 
 				borderWidth: 1,
-				backgroundColor: COLOR_SILVER
+				backgroundColor: COLOR_SILVER_TRANSPARENT_1
 			},
-			yaxis: { tickColor: COLOR_GREY_LIGHTER },
+			yaxis: { tickColor: COLOR_SILVER_TRANSPARENT_3 },
+			xaxis: {
+				tickColor: COLOR_SILVER_TRANSPARENT_3
+			},
 			legend: { show: true }
 		});
 
@@ -243,26 +246,29 @@ var handleBarChart = function () {
 	if ($('#bar-chart').length !== 0) {
 		var data = [[0, 10], [1, 8], [2, 4], [3, 13], [4, 17], [5, 9]];
 		var ticks = [[0, 'JAN'], [1, 'FEB'], [2, 'MAR'], [3, 'APR'], [4, 'MAY'], [5, 'JUN']];
-		$.plot('#bar-chart', [{ label: 'Bounce Rate', data: data, color: COLOR_BLACK_LIGHTER }], {
+		$.plot('#bar-chart', [{ label: 'Bounce Rate', data: data, color: COLOR_DARK_LIGHTER }], {
 			series: {
 				bars: {
 					show: true,
 					barWidth: 0.6,
 					align: 'center',
 					fill: true,
-					fillColor: COLOR_BLACK_LIGHTER,
+					fillColor: COLOR_DARK_LIGHTER,
 					zero: true
 				}
 			},
 			xaxis: {
-				tickColor: COLOR_GREY_LIGHTER,
+				tickColor: COLOR_SILVER_TRANSPARENT_3,
 				autoscaleMargin: 0.05,
 				ticks: ticks
 			},
+			yaxis: {
+				tickColor: COLOR_SILVER_TRANSPARENT_3
+			},
 			grid: {
-				borderColor: COLOR_GREY_LIGHTER,
+				borderColor: COLOR_SILVER_TRANSPARENT_5,
 				borderWidth: 1,
-				backgroundColor: COLOR_SILVER
+				backgroundColor: COLOR_SILVER_TRANSPARENT_1
 			},
 			legend: {
 				noColumns: 0
@@ -276,7 +282,7 @@ var handleInteractivePieChart = function () {
 	if ($('#interactive-pie-chart').length !== 0) {
 		var data = [];
 		var series = 3;
-		var colorArray = [COLOR_ORANGE, COLOR_BLACK_LIGHTER, COLOR_GREY];
+		var colorArray = [COLOR_ORANGE, COLOR_DARK_LIGHTER, COLOR_GREY];
 		for( var i = 0; i < series; i++) {
 			data[i] = { label: 'Series'+(i+1), data: Math.floor(Math.random()*100)+1, color: colorArray[i]};
 		}
@@ -306,7 +312,7 @@ var handleDonutChart = function () {
 	if ($('#donut-chart').length !== 0) {
 		var data = [];
 		var series = 3;
-		var colorArray = [COLOR_BLACK_LIGHTER, COLOR_GREY, COLOR_RED];
+		var colorArray = [COLOR_DARK_LIGHTER, COLOR_GREY, COLOR_RED];
 		var nameArray = ['Unique Visitor', 'Bounce Rate', 'Total Page Views', 'Avg Time On Site', '% New Visits'];
 		var dataArray = [20,14,12,31,23];
 		
@@ -354,15 +360,15 @@ var handleInteractiveChart = function () {
 			points: { show: true, radius: 5, fillColor: COLOR_WHITE },
 			shadowSize: 0
 		}], {
-			xaxis: {  tickColor: COLOR_GREY_LIGHTER,tickSize: 2 },
-			yaxis: {  tickColor: COLOR_GREY_LIGHTER, tickSize: 20 },
+			xaxis: {  tickColor: COLOR_SILVER_TRANSPARENT_3,tickSize: 2 },
+			yaxis: {  tickColor: COLOR_SILVER_TRANSPARENT_3, tickSize: 20 },
 			grid: { 
 				hoverable: true, 
 				clickable: true,
-				tickColor: COLOR_BLACK_TRANSPARENT_3,
+				tickColor: COLOR_SILVER_TRANSPARENT_3,
 				borderWidth: 1,
-				borderColor: COLOR_BLACK_TRANSPARENT_2,
-				backgroundColor: COLOR_SILVER_LIGHTER
+				borderColor: COLOR_SILVER_TRANSPARENT_5,
+				backgroundColor: COLOR_SILVER_TRANSPARENT_1
 			},
 			legend: {
 				noColumns: 1,
@@ -453,16 +459,16 @@ var handleLiveUpdatedChart = function () {
 			yaxis: { 
 				min: 0, 
 				max: 100, 
-				tickColor: COLOR_GREY_LIGHTER 
+				tickColor: COLOR_SILVER_TRANSPARENT_3 
 			},
 			xaxis: { 
 				show: true, 
-				tickColor: COLOR_GREY_LIGHTER 
+				tickColor: COLOR_SILVER_TRANSPARENT_3 
 			},
 			grid: {
 				borderWidth: 1,
-				borderColor: COLOR_GREY_LIGHTER,
-				backgroundColor: COLOR_SILVER_LIGHTER
+				borderColor: COLOR_SILVER_TRANSPARENT_5,
+				backgroundColor: COLOR_SILVER_TRANSPARENT_1
 			},
 			legend: {
 				noColumns: 1,
@@ -490,3 +496,7 @@ var Chart = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	Chart.init();
+});

@@ -1,17 +1,17 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 function calculateDivider() {
 	var dividerValue = 4;
-	if ($(this).width() <= 480) {
+	if ($(this).width() <= 576) {
 		dividerValue = 1;
-	} else if ($(this).width() <= 767) {
+	} else if ($(this).width() <= 992) {
 		dividerValue = 2;
-	} else if ($(this).width() <= 980) {
+	} else if ($(this).width() <= 1200) {
 		dividerValue = 3;
 	}
 	return dividerValue;
@@ -29,7 +29,7 @@ var handleIsotopesGallery = function() {
 		}
 	});
 	
-	$(window).smartresize(function() {
+	$(window).on('resize', function() {
 		var dividerValue = calculateDivider();
 		var containerWidth = $(container).width();
 		var columnWidth = containerWidth / dividerValue;
@@ -72,3 +72,7 @@ var Gallery = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	Gallery.init();
+});

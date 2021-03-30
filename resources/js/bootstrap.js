@@ -1,19 +1,22 @@
 "use strict";
 try {
+    //// base js
+    require('pace-js/pace');
     window.$ = window.jQuery = require('jquery');
-    window.Cookies = require('js-cookie');
-
     require('jqueryui');
     require('bootstrap');
-    require('jquery-slimscroll');
+    require('jquery-slimscroll/jquery.slimscroll');
+    window.Cookies = require('js-cookie');
+    require('./app');
+    require('../assets/js/theme/default');
+
+    require('../assets/js/demo/form-plugins.demo');
+
+
+    /// plugins
     require('parsleyjs/src/parsley');
-
-    require('bootstrap-datepicker/dist/js/bootstrap-datepicker')
-
-    // require('../assets/js/demo/form-plugins.demo');
-    // require('../assets/js/theme/default');
-    // require('../assets/js/apps');
-    // require('../assets/js/demo/dashboard');
+    require('bootstrap-datepicker/dist/js/bootstrap-datepicker');
+    require('select2/dist/js/select2');
 } catch (e) {
     console.log(e);
 }

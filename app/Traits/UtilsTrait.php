@@ -9,6 +9,39 @@ use Spatie\Permission\Models\Permission;
 trait UtilsTrait
 {
     /**
+     * @param $args
+     * @param string $format
+     * @return array
+     */
+    public function createLabels($args, $format = 'Y-m-d')
+    {
+        if (!isset($args['from']) || !isset($args['to'])) {
+            return [];
+        }
+
+        // if fromDate equal or large from the To Date
+        if ($this->sqlDate($args['from'])->format('Y-m-d') >= $this->sqlDate($args['to'])->format('Y-m-d')) {
+            return [];
+        }
+
+        $step = '+1 day';
+        if (isset($args['step'])) {
+            $step = $args['step'];
+        }
+
+        $startDate = $this->sqlDate($args['from']);
+        $endDate = $this->sqlDate($args['to'])->format('Y-m-d');
+
+        $cout = [];
+        do {
+            $cout[] = $startDate->format($format);
+            $startDate = $startDate->modify($step);
+        } while ($startDate->format('Y-m-d') <= $endDate);
+
+        return $cout;
+    }
+
+    /**
      * @param $date
      * @param string $format
      */
@@ -17,7 +50,6 @@ trait UtilsTrait
         if (is_null($date)) {
             $date = date('Y-m-d H:i:s');
         }
-        
         $date = date('Y-m-d H:i:s', strtotime($date));
 
         return new \DateTime($date);

@@ -1,11 +1,11 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
-Chart.defaults.global.defaultFontColor = COLOR_BLACK;
+Chart.defaults.global.defaultFontColor = COLOR_DARK;
 Chart.defaults.global.defaultFontFamily = FONT_FAMILY;
 Chart.defaults.global.defaultFontStyle = FONT_WEIGHT;
 
@@ -25,11 +25,11 @@ var lineChartData = {
 		data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
 	}, {
 		label: 'Dataset 2',
-		borderColor: COLOR_BLACK,
-		pointBackgroundColor: COLOR_BLACK,
+		borderColor: COLOR_DARK_LIGHTER,
+		pointBackgroundColor: COLOR_DARK,
 		pointRadius: 2,
 		borderWidth: 2,
-		backgroundColor: COLOR_BLACK_TRANSPARENT_3,
+		backgroundColor: COLOR_DARK_TRANSPARENT_3,
 		data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
 	}]
 };
@@ -39,14 +39,14 @@ var barChartData = {
 	datasets: [{
 		label: 'Dataset 1',
 		borderWidth: 2,
-		borderColor: COLOR_PURPLE,
-		backgroundColor: COLOR_PURPLE_TRANSPARENT_3,
+		borderColor: COLOR_INDIGO,
+		backgroundColor: COLOR_INDIGO_TRANSPARENT_3,
 		data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
 	}, {
 		label: 'Dataset 2',
 		borderWidth: 2,
-		borderColor: COLOR_BLACK,
-		backgroundColor: COLOR_BLACK_TRANSPARENT_3,
+		borderColor: COLOR_DARK,
+		backgroundColor: COLOR_DARK_TRANSPARENT_3,
 		data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
 	}]
 };
@@ -64,10 +64,10 @@ var radarChartData = {
 	}, {
 		label: 'Dataset 2',
 		borderWidth: 2,
-		borderColor: COLOR_BLACK,
-		pointBackgroundColor: COLOR_BLACK,
+		borderColor: COLOR_DARK,
+		pointBackgroundColor: COLOR_DARK,
 		pointRadius: 2,
-		backgroundColor: COLOR_BLACK_TRANSPARENT_2,
+		backgroundColor: COLOR_DARK_TRANSPARENT_2,
 		data: [28,48,40,19,96,27,100]
 	}]
 };
@@ -76,8 +76,8 @@ var polarAreaData = {
 	labels: ['Dataset 1', 'Dataset 2', 'Dataset 3', 'Dataset 4', 'Dataset 5'],
 	datasets: [{
 		data: [300, 160, 100, 200, 120],
-		backgroundColor: [COLOR_PURPLE_TRANSPARENT_7, COLOR_BLUE_TRANSPARENT_7, COLOR_GREEN_TRANSPARENT_7, COLOR_GREY_TRANSPARENT_7, COLOR_BLACK_TRANSPARENT_7],
-		borderColor: [COLOR_PURPLE, COLOR_BLUE, COLOR_GREEN, COLOR_GREY, COLOR_BLACK],
+		backgroundColor: [COLOR_INDIGO_TRANSPARENT_7, COLOR_BLUE_TRANSPARENT_7, COLOR_GREEN_TRANSPARENT_7, COLOR_GREY_TRANSPARENT_7, COLOR_DARK_TRANSPARENT_7],
+		borderColor: [COLOR_INDIGO, COLOR_BLUE, COLOR_GREEN, COLOR_GREY, COLOR_DARK],
 		borderWidth: 2,
 		label: 'My dataset'
 	}]
@@ -87,8 +87,8 @@ var pieChartData = {
 	labels: ['Dataset 1', 'Dataset 2', 'Dataset 3', 'Dataset 4', 'Dataset 5'],
 	datasets: [{
 		data: [300, 50, 100, 40, 120],
-		backgroundColor: [COLOR_RED_TRANSPARENT_7, COLOR_ORANGE_TRANSPARENT_7, COLOR_SILVER_TRANSPARENT_7, COLOR_GREY_TRANSPARENT_7, COLOR_BLACK_TRANSPARENT_7],
-		borderColor: [COLOR_RED, COLOR_ORANGE, COLOR_SILVER_DARKER, COLOR_GREY, COLOR_BLACK],
+		backgroundColor: [COLOR_RED_TRANSPARENT_7, COLOR_ORANGE_TRANSPARENT_7, COLOR_MUTED_TRANSPARENT_7, COLOR_GREY_TRANSPARENT_7, COLOR_DARK_TRANSPARENT_7],
+		borderColor: [COLOR_RED, COLOR_ORANGE, COLOR_MUTED, COLOR_GREY, COLOR_DARK],
 		borderWidth: 2,
 		label: 'My dataset'
 	}]
@@ -98,8 +98,8 @@ var doughnutChartData = {
 	labels: ['Dataset 1', 'Dataset 2', 'Dataset 3', 'Dataset 4', 'Dataset 5'],
 	datasets: [{
 		data: [300, 50, 100, 40, 120],
-		backgroundColor: [COLOR_PURPLE_TRANSPARENT_7, COLOR_BLUE_TRANSPARENT_7, COLOR_GREEN_TRANSPARENT_7, COLOR_GREY_TRANSPARENT_7, COLOR_BLACK_TRANSPARENT_7],
-		borderColor: [COLOR_PURPLE, COLOR_BLUE, COLOR_GREEN, COLOR_GREY, COLOR_BLACK],
+		backgroundColor: [COLOR_INDIGO_TRANSPARENT_7, COLOR_BLUE_TRANSPARENT_7, COLOR_GREEN_TRANSPARENT_7, COLOR_GREY_TRANSPARENT_7, COLOR_DARK_TRANSPARENT_7],
+		borderColor: [COLOR_INDIGO, COLOR_BLUE, COLOR_GREEN, COLOR_GREY, COLOR_DARK],
 		borderWidth: 2,
 		label: 'My dataset'
   }]
@@ -152,3 +152,7 @@ var ChartJs = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	ChartJs.init();
+});

@@ -113,6 +113,7 @@
         <div class="col-lg-6">
             <div class="panel panel-inverse">
                 <div class="panel-heading">
+                    <h4 class="panel-title">{{ __('Goal progress') }}</h4>
                     <div class="panel-heading-btn">
                         <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default"
                            data-click="panel-expand"><i
@@ -127,7 +128,6 @@
                            data-click="panel-remove"><i
                                 class="fa fa-times"></i></a>
                     </div>
-                    <h4 class="panel-title">Goal progress</h4>
                 </div>
                 <div class="panel-body">
                     /// content here
@@ -144,13 +144,13 @@
         <div class="col-lg-6">
             <div class="panel panel-inverse">
                 <div class="panel-heading">
+                    <h4 class="panel-title">{{ __('Todo List') }}</h4>
                     <div class="panel-heading-btn">
                         <a href="{{ route('todo-list.create') }}" class="btn btn-xs btn-success add-new-task">
                             <i class="fa fa-plus"></i>&nbsp;
                             {{ __('Add new task') }}
                         </a>
                     </div>
-                    <h4 class="panel-title">Todo List</h4>
                 </div>
                 <div class="panel-body p-0">
                     <ul class="todolist">
@@ -242,7 +242,7 @@
 
 
     @push('scripts')
-        <script type="text/javascript">
+        <script type="text/javascript" async>
             $(function () {
                 $(document).on('click', '.add-new-task', function (e) {
                     e.preventDefault();
@@ -253,7 +253,11 @@
                         $('body').append($res);
                         $('#add-new-task-modal').modal('show');
                         $('#add-new-task-form').parsley();
-                        handleDatepicker();
+                        $('.datepicker-default').datepicker({
+                            todayHighlight: true,
+                            autoclose: true,
+                            format: 'yyyy-mm-dd'
+                        });
                     });
                 });
 

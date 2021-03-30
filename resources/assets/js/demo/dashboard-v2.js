@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var getMonthName = function(number) {
@@ -172,8 +172,8 @@ var handleVisitorsDonutChart = function() {
 var handleVisitorsVectorMap = function() {
 	if ($('#visitors-map').length !== 0) {
 		$('#visitors-map').vectorMap({
-			map: 'world_merc_en',
-			scaleColors: [COLOR_BLACK_LIGHTER, COLOR_BLACK],
+			map: 'world_mill',
+			scaleColors: [COLOR_DARK_LIGHTER, COLOR_DARK],
 			container: $('#visitors-map'),
 			normalizeFunction: 'linear',
 			hoverOpacity: 0.5,
@@ -181,7 +181,7 @@ var handleVisitorsVectorMap = function() {
 			zoomOnScroll: false,
 			markerStyle: {
 				initial: {
-					fill: COLOR_BLACK,
+					fill: COLOR_DARK,
 					stroke: 'transparent',
 					r: 3
 				}
@@ -191,7 +191,7 @@ var handleVisitorsVectorMap = function() {
 			}],
 			regionStyle: {
 				initial: {
-					fill: COLOR_BLACK_LIGHTER,
+					fill: COLOR_DARK_LIGHTER,
 					"fill-opacity": 1,
 					stroke: 'none',
 					"stroke-width": 0.4,
@@ -305,3 +305,7 @@ var DashboardV2 = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	DashboardV2.init();
+});

@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var handleEmailActionButtonStatus = function() {
@@ -30,7 +30,7 @@ var handleEmailCheckboxChecked = function() {
 
 var handleEmailAction = function() {
 	$(document).on('click', '[data-email-action]', function() {
-		var targetEmailList = '[data-checked=email-checkbox]:checked';
+		var targetEmailList = '[data-checked="email-checkbox"]:checked';
 		if ($(targetEmailList).length !== 0) {
 			$(targetEmailList).closest('li').slideToggle(function() {
 				$(this).remove();
@@ -45,22 +45,17 @@ var handleEmailAction = function() {
 
 var handleEmailSelectAll = function () {
 	"use strict";
-	$('[data-click=email-select-all]').click(function(e) {
-		e.preventDefault();
-
-		var targetIcon = $(this).find('i');
-		if ($(targetIcon).hasClass('fa-check-square')) {
-			$(targetIcon).removeClass('fa-check-square text-inverse').addClass('fa-square text-muted');
+	$(document).on('change', '[data-change=email-select-all]', function() {
+		if (!$(this).is(':checked')) {
 			$('.list-email .email-checkbox input[type="checkbox"]').prop('checked', false);
 		} else {
-			$(targetIcon).addClass('fa-check-square text-inverse').removeClass('fa-square text-muted');
 			$('.list-email .email-checkbox input[type="checkbox"]').prop('checked', true);
 		}
 		$('.list-email .email-checkbox input[type="checkbox"]').trigger('change');
 	});
 };
 
-var InboxV2 = function () {
+var EmailInbox = function () {
 	"use strict";
 	return {
 		//main function
@@ -71,3 +66,7 @@ var InboxV2 = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	EmailInbox.init();
+});

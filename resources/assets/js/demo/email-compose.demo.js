@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var handleEmailToInput = function() {
@@ -12,7 +12,15 @@ var handleEmailToInput = function() {
 };
 
 var handleEmailContent = function() {
-	$('#wysihtml5').wysihtml5();
+	$('#wysihtml5').wysihtml5({
+		'events': {
+    	'load': function() {
+    		var targetHeight = $(window).height() - $(this.composer.editableArea).offset().top - 115;
+    		
+    		$(this.composer.editableArea).height(targetHeight);
+    	}
+    }
+	});
 };
 
 var handleAddCc = function() {
@@ -43,3 +51,7 @@ var EmailCompose = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	EmailCompose.init();
+});

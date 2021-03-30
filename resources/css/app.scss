@@ -1,0 +1,18 @@
+//@import "~jqueryui/jquery-ui.min.css";
+//@import "~pace-js/pace-theme-default.css";
+@import "../assets/css/default/app.min.css";
+
+/* Plugins css */
+@import "~parsleyjs/src/parsley.css";
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker.css";
+//@import "~bootstrap-select/dist/css/bootstrap-select.css";
+//@import "~select2/dist/css/select2.min.css";
+
+
+.no-padding {
+    padding: 0px !important;
+}
+
+.no-radius {
+    border-radius: 0px !important;
+}

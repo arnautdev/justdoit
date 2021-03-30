@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 var handleJstreeDefault = function() {
@@ -70,7 +70,7 @@ var handleJstreeCheckable = function() {
                     }]
                 }, {
                     "text": "custom icon",
-                    "icon": "fa fa-cloud-download fa-lg text-inverse"
+                    "icon": "fa fa-cloud fa-lg text-blue"
                 }, {
                     "text": "disabled node",
                     "state": {
@@ -165,7 +165,7 @@ var handleJstreeAjax = function() {
 			"check_callback": true,
 			'data': {
 			'url': function (node) {
-				return node.id === '#' ? '../assets/plugins/jstree/demo/data_root.json': '../assets/plugins/jstree/demo/' + node.original.file;
+				return node.id === '#' ? '../assets/js/demo/json/data_root.json': '../assets/js/demo/json/' + node.original.file;
 			},
 			'data': function (node) {
 				return { 'id': node.id };
@@ -194,3 +194,7 @@ var TreeView = function () {
 		}
 	};
 }();
+
+$(document).ready(function() {
+	TreeView.init();
+});

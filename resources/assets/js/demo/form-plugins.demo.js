@@ -1,8 +1,8 @@
 /*
 Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.3.0
+Version: 4.7.0
 Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin-v4.3/admin/
+Website: http://www.seantheme.com/color-admin/admin/
 */
 
 // IE8 browser support
@@ -33,7 +33,9 @@ var handleDatepicker = function () {
         todayHighlight: true
     });
     $('.datepicker-default').datepicker({
-        todayHighlight: true
+        todayHighlight: true,
+        autoclose: true,
+        format: 'yyyy-mm-dd'
     });
     $('#datepicker-inline').datepicker({
         todayHighlight: true
@@ -58,7 +60,8 @@ var handleIonRangeSlider = function () {
         prefix: "$",
         maxPostfix: "+",
         prettify: false,
-        hasGrid: true
+        hasGrid: true,
+        skin: 'big'
     });
     $('#customRange_rangeSlider').ionRangeSlider({
         min: 1000,
@@ -68,7 +71,8 @@ var handleIonRangeSlider = function () {
         type: 'double',
         step: 500,
         postfix: " €",
-        hasGrid: true
+        hasGrid: true,
+        skin: 'flat'
     });
     $('#customValue_rangeSlider').ionRangeSlider({
         values: [
@@ -95,7 +99,12 @@ var handleFormMaskedInput = function () {
 var handleFormColorPicker = function () {
     "use strict";
     $('#colorpicker').colorpicker({format: 'hex'});
-    $('#colorpicker-prepend').colorpicker({format: 'hex'});
+    $('#colorpicker-append').colorpicker({format: 'hex'});
+    $('#colorpicker-append').on('colorpickerChange', function (e) {
+        var color = $('#colorpicker-append').colorpicker('getValue');
+
+        $('#colorpicker-append').find('.input-group-text i').css('color', color);
+    });
     $('#colorpicker-rgba').colorpicker();
 };
 
@@ -106,8 +115,37 @@ var handleFormTimePicker = function () {
 
 var handleFormPasswordIndicator = function () {
     "use strict";
-    $('#password-indicator-default').passwordStrength();
-    $('#password-indicator-visible').passwordStrength({targetDiv: '#passwordStrengthDiv2'});
+    var options = {};
+    options.ui = {
+        container: '#pwd-default-container',
+        viewports: {progress: '#pwstrength-default-progress'},
+        showVerdictsInsideProgressBar: true,
+        progressBarExtraCssClasses: 'progress-bar-striped'
+    };
+    options.common = {
+        debug: true,
+        onLoad: function () {
+            $('#pwstrength-default-text').text('Start typing password...');
+        }
+    };
+    $('#pwstrength-default').pwstrength(options);
+
+    var options = {};
+    options.ui = {
+        container: '#pwd-popover-container',
+        viewports: {progress: '#pwstrength-popover-progress'},
+        showPopover: true,
+        showErrors: true,
+        showVerdictsInsideProgressBar: true,
+        progressBarExtraCssClasses: 'progress-bar-striped'
+    };
+    options.common = {
+        debug: true,
+        onLoad: function () {
+            $('#pwstrength-popover-text').text('Start typing password...');
+        }
+    };
+    $('#pwstrength-popover').pwstrength(options);
 };
 
 var handleJqueryAutocomplete = function () {
@@ -242,7 +280,7 @@ var handleDateRangePicker = function () {
 
 var handleSelect2 = function () {
     $(".default-select2").select2();
-    $(".multiple-select2").select2({placeholder: "Select a state"});
+    $(".multiple-select2").select2({placeholder: "Select ..."});
 };
 
 var handleDateTimePicker = function () {
@@ -309,18 +347,22 @@ var FormPlugins = function () {
             // handleFormMaskedInput();
             // handleFormColorPicker();
             // handleFormTimePicker();
+            // handleDateRangePicker();
+            handleSelect2();
             // handleFormPasswordIndicator();
             // handleJqueryAutocomplete();
             // handleBootstrapCombobox();
             // handleSelectpicker();
             // handleTagsInput();
             // handleJqueryTagIt();
-            // handleDateRangePicker();
-            // handleSelect2();
-            // handleDateTimePicker();
             // handleBootstrapColorPalette();
             // handleSimpleColorpicker();
             // handleClipboard();
+            // handleDateTimePicker();
         }
     };
 }();
+
+$(document).ready(function () {
+    FormPlugins.init();
+});
