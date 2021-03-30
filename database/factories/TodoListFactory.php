@@ -22,7 +22,10 @@ class TodoListFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->text(20),
+            'description' => $this->faker->text(100),
+            'toDate' => $this->faker->dateTimeBetween(date('Y-01-01 H:i:s'), date('Y-m-d H:i:s')),
+            'isDone' => $this->faker->randomElement(['yes', 'no'])
         ];
     }
 }

@@ -66,6 +66,22 @@ class Client extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function todoList()
+    {
+        return $this->hasMany(TodoList::class, 'userId', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function category()
+    {
+        return $this->hasMany(Category::class, 'userId', 'id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function expensesSettings()
     {
         return $this->hasMany(ExpenseSettings::class, 'userId', 'id');
