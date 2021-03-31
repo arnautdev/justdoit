@@ -37,15 +37,20 @@ class Expenses extends Model
      */
     public static function scopeFilterBy($query, $filters)
     {
-        if (!isset($filters['toDate'])) {
-            $filters['toDate'] = date('Y-m-d') . ' - ' . date('Y-m-d H:i:s');
-        }
-
         $namespace = basename(self::class);
         $namespace = str_replace('Models', 'Utilities', $namespace);
         $filter = new FilterBuilder($query, $filters, $namespace);
 
         return $filter->apply()->orderBy('id', 'DESC');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTodayAdded()
+    {
+        $filters['toDate'] = date('Y-m-d 00:00:00') . ' - ' . date('Y-m-d H:i:s');
+        return Expenses::filterBy($filters)->get();
     }
 
     /**
