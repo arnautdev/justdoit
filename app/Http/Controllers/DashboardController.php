@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\AddGoalActionToTodoListJob;
+use App\Jobs\AddStaticMonthlyExpensesJob;
 use App\Models\Expenses;
 use App\Models\ExpenseSettings;
 use App\Models\TodoList;
@@ -17,6 +19,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
+//        dd($this->dispatch(new AddGoalActionToTodoListJob()));
+
         $data['expenses'] = ExpenseSettings::where('showOnDashboard', '=', 'yes')->get();
         $data['addedToday'] = (new Expenses())->getTodayAdded();
         $data['todoList'] = TodoList::filterBy(\request()->all())->get();

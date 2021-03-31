@@ -38,6 +38,14 @@ class GoalAction extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function checkIsAddToTodoList()
+    {
+        return ($this->addToTodoList);
+    }
+
+    /**
      * @return string
      */
     public function getWeekDaysNames(): array
