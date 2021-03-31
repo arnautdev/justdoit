@@ -81,6 +81,10 @@ class Goal extends Model
      */
     public function getOutstandingDays()
     {
+        if ($this->endDate < date('Y-m-d')) {
+            return 0;
+        }
+
         $today = new Carbon();
         $diff = $today->diff($this->endDate);
         return $diff->days;
