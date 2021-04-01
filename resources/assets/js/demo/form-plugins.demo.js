@@ -237,14 +237,15 @@ var handleDateRangePicker = function () {
 
     $('#advance-daterange span').html(moment().subtract('days', 29).format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
 
-    $('#advance-daterange').daterangepicker({
-        format: 'MM/DD/YYYY',
+    $('.advance-daterange').daterangepicker({
+        // format: 'MM/DD/YYYY',
+        format: 'YYYY-MM-DD',
         startDate: moment().subtract(29, 'days'),
         endDate: moment(),
-        minDate: '01/01/2012',
-        maxDate: '12/31/2015',
-        dateLimit: {days: 60},
-        showDropdowns: true,
+        minDate: '2021-01-01',
+        maxDate: '2099-01-01',
+        dateLimit: {days: 180},
+        showDropdowns: false,
         showWeekNumbers: true,
         timePicker: false,
         timePickerIncrement: 1,
@@ -260,11 +261,12 @@ var handleDateRangePicker = function () {
         opens: 'right',
         drops: 'down',
         buttonClasses: ['btn', 'btn-sm'],
-        applyClass: 'btn-primary',
+        applyClass: 'btn-success',
         cancelClass: 'btn-default',
         separator: ' to ',
         locale: {
-            applyLabel: 'Submit',
+            format: 'YYYY-MM-DD',
+            applyLabel: 'Apply',
             cancelLabel: 'Cancel',
             fromLabel: 'From',
             toLabel: 'To',
@@ -347,7 +349,7 @@ var FormPlugins = function () {
             // handleFormMaskedInput();
             // handleFormColorPicker();
             // handleFormTimePicker();
-            // handleDateRangePicker();
+            handleDateRangePicker();
             handleSelect2();
             // handleFormPasswordIndicator();
             // handleJqueryAutocomplete();

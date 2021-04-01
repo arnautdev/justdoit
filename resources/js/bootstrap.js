@@ -7,6 +7,7 @@ try {
     require('bootstrap');
     require('jquery-slimscroll/jquery.slimscroll');
     window.Cookies = require('js-cookie');
+    window.moment = require('moment/moment')
     require('./app');
     require('../assets/js/theme/default');
 
@@ -16,20 +17,10 @@ try {
     /// plugins
     require('parsleyjs/src/parsley');
     require('bootstrap-datepicker/dist/js/bootstrap-datepicker');
+    require('bootstrap-daterangepicker/daterangepicker');
     require('select2/dist/js/select2');
 } catch (e) {
     console.log(e);
-}
-
-
-if ($('meta[name="csrf-token"]').length > 0) {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-} else {
-    console.log('Error meta[name="csrf-token"] not found in header.');
 }
 
 /**

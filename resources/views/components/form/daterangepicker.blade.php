@@ -5,7 +5,7 @@
     $type = $data['type'] ?? 'text';
     $label = $data['label'] ?? ucfirst($name);
 
-    $attrs['class'] = 'form-control date-picker';
+    $attrs['class'] = 'form-control advance-daterange';
     if(isset($data['class'])){
         $attrs['class'] = $attrs['class'] . $data['class'];
     }

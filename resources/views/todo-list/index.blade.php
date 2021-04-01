@@ -1,6 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
+
+    {{ $panel->start(['title' => 'Filters']) }}
+    <div class="row">
+        <div class="col-3">
+            {{ $form->daterangepicker(['name' => 'filters[toDate]']) }}
+        </div>
+    </div>
+    {{ $panel->end() }}
+
     {{ $panel->start(['title' => 'Todo list']) }}
 
     <table class="table table-striped table-bordered">

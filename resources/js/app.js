@@ -1,61 +1,6 @@
 "use strict";
 require('./bootstrap');
 
-/*
-Template Name: Color Admin - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Version: 4.7.0
-Author: Sean Ngu
-Website: http://www.seantheme.com/color-admin/admin/
-	----------------------------
-	APPS CONTENT TABLE
-	----------------------------
-
-	<!-- ======== GLOBAL SCRIPT SETTING ======== -->
-	01. Handle Scrollbar
-	02. Handle Sidebar - Menu
-	03. Handle Sidebar - Mobile View Toggle
-	04. Handle Sidebar - Minify / Expand
-	05. Handle Page Load - Fade in
-	06. Handle Panel - Remove / Reload / Collapse / Expand
-	07. Handle Panel - Draggable
-	08. Handle Tooltip & Popover Activation
-	09. Handle Scroll to Top Button Activation
-
-	<!-- ======== Added in V1.2 ======== -->
-	10. Handle Theme & Page Structure Configuration - added in V1.2
-	11. Handle Theme Panel Expand - added in V1.2
-	12. Handle After Page Load Add Class Function - added in V1.2
-
-	<!-- ======== Added in V1.5 ======== -->
-	13. Handle Save Panel Position Function - added in V1.5
-	14. Handle Draggable Panel Local Storage Function - added in V1.5
-	15. Handle Reset Local Storage - added in V1.5
-
-	<!-- ======== Added in V1.6 ======== -->
-	16. Handle IE Full Height Page Compatibility - added in V1.6
-	17. Handle Unlimited Nav Tabs - added in V1.6
-
-	<!-- ======== Added in V1.9 ======== -->
-	18. Handle Top Menu - Unlimited Top Menu Render - added in V1.9
-	19. Handle Top Menu - Sub Menu Toggle - added in V1.9
-	20. Handle Top Menu - Mobile Sub Menu Toggle - added in V1.9
-	21. Handle Top Menu - Mobile Top Menu Toggle - added in V1.9
-	22. Handle Clear Sidebar Selection & Hide Mobile Menu - added in V1.9
-
-	<!-- ======== Added in V4.0 ======== -->
-	23. Handle Check Bootstrap Version - added in V4.0
-	24. Handle Page Scroll Class - added in V4.0
-	25. Handle Toggle Navbar Profile - added in V4.0
-	26. Handle Sidebar Scroll Memory - added in V4.0
-	27. Handle Sidebar Minify Sub Menu - added in V4.0
-	28. Handle Ajax Mode - added in V4.0
-	29. Handle Float Navbar Search - added in V4.0
-
-	<!-- ======== APPLICATION SETTING ======== -->
-	Application Controller
-*/
-
-
 /* 01. Handle Scrollbar
 ------------------------------------------------ */
 var handleSlimScroll = function () {
@@ -1690,6 +1635,28 @@ var handleDismissClass = function () {
     });
 };
 
+var handleDashboardTodolist = function () {
+    "use strict";
+    $('[data-click=todolist]').click(function (event) {
+        event.preventDefault();
+        console.log($url);
+
+        var targetList = $(this).closest('li');
+        var $url = $(this).attr('href');
+        $.ajax({
+            type: 'PUT',
+            url: $url,
+            success: function ($resp) {
+                if ($(targetList).hasClass('active')) {
+                    $(targetList).removeClass('active');
+                } else {
+                    $(targetList).addClass('active');
+                }
+            }
+        });
+    });
+};
+
 
 /* Application Controller
 ------------------------------------------------ */
@@ -1715,6 +1682,8 @@ var App = function () {
             if (setting && setting.ajaxMode) {
                 this.initAjax();
             }
+
+            handleDashboardTodolist();
         },
         settings: function (option) {
             if (option) {
@@ -1781,7 +1750,10 @@ var App = function () {
         initAjax: function () {
             handleAjaxMode(setting);
             $.ajaxSetup({
-                cache: true
+                cache: true,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
             });
         },
         setPageTitle: function (pageTitle) {
