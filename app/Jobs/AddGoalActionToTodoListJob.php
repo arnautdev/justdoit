@@ -39,7 +39,7 @@ class AddGoalActionToTodoListJob implements ShouldQueue
 
                 $createTodoLists = $goals->map(function ($goal) {
                     $goalAction = $goal->goalAction()->firstOrNew();
-                    if ($goalAction->checkIsAddToTodoList()) {
+                    if ($goalAction->checkIsAddToTodoList() && $goalAction->checkIsGoalActionDay()) {
                         return [
                             'title' => $goal->title,
                             'description' => $goalAction->title,

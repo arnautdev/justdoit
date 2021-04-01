@@ -37,6 +37,17 @@ class GoalAction extends Model
         });
     }
 
+
+    /**
+     * @return bool
+     */
+    public function checkIsGoalActionDay()
+    {
+        $today = date('N');
+        $goalActionsDays = explode(',', $this->weekDays);
+        return in_array($today, $goalActionsDays);
+    }
+
     /**
      * @return mixed
      */
