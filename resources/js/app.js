@@ -1679,9 +1679,7 @@ var App = function () {
             this.initPageLoad();
             $(window).trigger('load');
 
-            if (setting && setting.ajaxMode) {
-                this.initAjax();
-            }
+            this.initAjax();
 
             handleDashboardTodolist();
         },
@@ -1750,7 +1748,7 @@ var App = function () {
         initAjax: function () {
             handleAjaxMode(setting);
             $.ajaxSetup({
-                cache: true,
+                // cache: true,
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
