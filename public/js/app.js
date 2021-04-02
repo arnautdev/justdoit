@@ -4241,11 +4241,7 @@ var App = function () {
       this.initThemePanel();
       this.initPageLoad();
       $(window).trigger('load');
-
-      if (setting && setting.ajaxMode) {
-        this.initAjax();
-      }
-
+      this.initAjax();
       handleDashboardTodolist();
     },
     settings: function settings(option) {
@@ -4314,7 +4310,7 @@ var App = function () {
     initAjax: function initAjax() {
       handleAjaxMode(setting);
       $.ajaxSetup({
-        cache: true,
+        // cache: true,
         headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
@@ -4388,6 +4384,14 @@ try {
   __webpack_require__(/*! select2/dist/js/select2 */ "./node_modules/select2/dist/js/select2.js");
 } catch (e) {
   console.log(e);
+}
+
+if ($('meta[name="csrf-token"]').length > 0) {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
 }
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
