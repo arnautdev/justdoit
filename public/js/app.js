@@ -4241,7 +4241,6 @@ var App = function () {
       this.initThemePanel();
       this.initPageLoad();
       $(window).trigger('load');
-      this.initAjax();
       handleDashboardTodolist();
     },
     settings: function settings(option) {

@@ -1679,8 +1679,6 @@ var App = function () {
             this.initPageLoad();
             $(window).trigger('load');
 
-            this.initAjax();
-
             handleDashboardTodolist();
         },
         settings: function (option) {
