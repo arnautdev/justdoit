@@ -70,7 +70,11 @@ class GoalController extends Controller
      */
     public function update(Request $request, Goal $goal)
     {
-        //
+        $update = $this->validator($request);
+        if ($goal->update($update)) {
+            return back()->with('success', __('success-update-message'));
+        }
+        return back()->with('error', __('error-update-message'));
     }
 
     /**
@@ -81,7 +85,10 @@ class GoalController extends Controller
      */
     public function destroy(Goal $goal)
     {
-        //
+        if ($goal->exists && $goal->delete()) {
+            return back()->with('success', __('success-delete-message'));
+        }
+        return back()->with('error', __('error-delete-message'));
     }
 
     /**

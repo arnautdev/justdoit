@@ -240,8 +240,8 @@ var handleDateRangePicker = function () {
     $('.advance-daterange').daterangepicker({
         // format: 'MM/DD/YYYY',
         format: 'YYYY-MM-DD',
-        startDate: moment().subtract(29, 'days'),
-        endDate: moment(),
+        // startDate: moment().subtract(29, 'days'),
+        // endDate: moment(),
         minDate: '2021-01-01',
         maxDate: '2099-01-01',
         dateLimit: {days: 180},

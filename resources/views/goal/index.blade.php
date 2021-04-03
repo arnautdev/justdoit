@@ -1,6 +1,37 @@
 @extends('layouts.master')
 
 @section('content')
+
+    {{ $panel->start(['title' => 'Filters']) }}
+    {{ Form::open(['method' => 'GET']) }}
+
+    <div class="row">
+        <div class="col-lg-2">
+            {{ $form->select([
+                'name'=>'isDone',
+                'options' => [
+                    'all' => 'All',
+                    'yes' => 'Yes',
+                    'no' => 'No',
+                ]
+            ]) }}
+        </div>
+        <!-- End ./col-lg-2 -->
+    </div>
+    <!-- End ./row -->
+
+    <div class="btn-group">
+        {{ $form->button('Filter') }}
+        <a href="{{ route(request()->route()->getName()) }}" class="btn btn-sm btn-default">
+            <i class="fa fa-window-close"></i>&nbsp;
+            {{ __('Clear') }}
+        </a>
+    </div>
+
+    {{ Form::close() }}
+    {{ $panel->end() }}
+
+
     {{ $panel->start(['title' => 'Available goals']) }}
 
     <div class="form-group">

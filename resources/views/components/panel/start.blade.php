@@ -19,4 +19,4 @@
         @endif
     </div>
     <div class="panel-body">
-{{--        <div class="table-responsive">--}}
+        <div class="table-responsive">

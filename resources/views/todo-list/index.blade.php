@@ -3,11 +3,22 @@
 @section('content')
 
     {{ $panel->start(['title' => 'Filters']) }}
+    {{ Form::open(['method' => 'GET']) }}
     <div class="row">
-        <div class="col-3">
-            {{ $form->daterangepicker(['name' => 'filters[toDate]']) }}
+        <div class="col-lg-3">
+            {{ $form->daterangepicker(['name' => 'toDate']) }}
         </div>
     </div>
+
+    <div class="btn-group">
+        {{ $form->button('Filter') }}
+        <a href="{{ route(request()->route()->getName()) }}" class="btn btn-sm btn-default">
+            <i class="fa fa-window-close"></i>&nbsp;
+            {{ __('Clear') }}
+        </a>
+    </div>
+
+    {{ Form::close() }}
     {{ $panel->end() }}
 
     {{ $panel->start(['title' => 'Todo list']) }}

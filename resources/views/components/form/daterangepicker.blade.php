@@ -23,12 +23,16 @@
         $value = old($name);
     }
 
-    if(isset($data[$name])){
+    if(isset($data[$name]) && $value == ''){
         $value = $data[$name];
     }
 
-    if(isset($model) && isset($data[$model][$name])){
+    if(isset($model) && isset($data[$model][$name]) && $value == ''){
         $value = $data[$model][$name];
+    }
+
+    if(request()->get($name, false)  && $value == ''){
+        $value = request()->get($name, false);
     }
 @endphp
 

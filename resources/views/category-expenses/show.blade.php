@@ -12,7 +12,8 @@
 
         <div class="panel-body">
             <div class="form-group">
-                <a href="{{ route('monthly-reports.index') }}" class="btn btn-sm btn-default">
+                <a href="{{ route('monthly-reports.index') }}/?{{request()->getQueryString()}}"
+                   class="btn btn-sm btn-default">
                     <i class="fa fa-arrow-left"></i>&nbsp;
                     {{ __('Back to all') }}
                 </a>

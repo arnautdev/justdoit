@@ -53,7 +53,7 @@ class GoalAction extends Model
      */
     public function checkIsAddToTodoList()
     {
-        return ($this->addToTodoList);
+        return ($this->addToTodoList == 'yes');
     }
 
     /**

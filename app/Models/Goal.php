@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Traits\ModelFilterTrait;
 use App\Traits\UserIdFilterTrait;
 use App\Traits\UtilsTrait;
-use App\Utilities\FilterBuilder;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +15,8 @@ class Goal extends Model
     use HasFactory,
         SoftDeletes,
         UserIdFilterTrait,
-        UtilsTrait;
+        UtilsTrait,
+        ModelFilterTrait;
 
     /**
      * @var array
@@ -28,6 +29,16 @@ class Goal extends Model
         'endDate',
         'userId',
     ];
+
+    /**
+     * @return string[]
+     */
+    public function getDefaultFilters()
+    {
+        return [
+            'isDone' => 'no'
+        ];
+    }
 
     /**
      * Get goal progress percent
@@ -88,19 +99,6 @@ class Goal extends Model
         $today = new Carbon();
         $diff = $today->diff($this->endDate);
         return $diff->days;
-    }
-
-    /**
-     * @param $query
-     * @param $filters
-     */
-    public function scopeFilterBy($query, $filters)
-    {
-        $namespace = basename(self::class);
-        $namespace = str_replace('Models', 'Utilities', $namespace);
-        $filter = new FilterBuilder($query, $filters, $namespace);
-
-        return $filter->apply()->orderBy('id', 'DESC');
     }
 
 
