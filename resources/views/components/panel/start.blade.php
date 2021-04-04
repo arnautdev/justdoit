@@ -18,5 +18,5 @@
             <h4 class="panel-title">{{ __($data['title']) }}</h4>
         @endif
     </div>
-    <div class="table-responsive">
-        <div class="panel-body">
+    <div class="panel-body">
+        <div class="table-responsive">

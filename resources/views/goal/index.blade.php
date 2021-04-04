@@ -5,8 +5,8 @@
     {{ $panel->start(['title' => 'Filters']) }}
     {{ Form::open(['method' => 'GET']) }}
 
-    <div class="row">
-        <div class="col-lg-2">
+    <div class="">
+        <div class="col-lg-2 no-padding">
             {{ $form->select([
                 'name'=>'isDone',
                 'options' => [
