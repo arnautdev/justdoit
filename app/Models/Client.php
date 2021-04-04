@@ -12,7 +12,10 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Client extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes, HasRoles;
+    use HasFactory,
+        Notifiable,
+        SoftDeletes,
+        HasRoles;
 
     /**
      * @var string
@@ -58,9 +61,20 @@ class Client extends Authenticatable
 
         static::created(function ($row) {
             $guardName = $row->guard;
-            $role = Role::where('name', '=', $guardName)->firstOrNew();
+            $role = Role::where('name', '=', $guardName)->firstOrNew([], []);
             $row->assignRole($role->id);
         });
+    }
+
+    /**
+     * Get active goals
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getActiveGoals()
+    {
+        return $this->goals()
+            ->where('isDone', '=', 'no')
+            ->get();
     }
 
     /**

@@ -114,25 +114,45 @@
             <div class="panel panel-inverse">
                 <div class="panel-heading">
                     <h4 class="panel-title">{{ __('Goal progress') }}</h4>
-                    <div class="panel-heading-btn">
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default"
-                           data-click="panel-expand"><i
-                                class="fa fa-expand"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success"
-                           data-click="panel-reload"><i
-                                class="fa fa-redo"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning"
-                           data-click="panel-collapse"><i
-                                class="fa fa-minus"></i></a>
-                        <a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger"
-                           data-click="panel-remove"><i
-                                class="fa fa-times"></i></a>
+                </div>
+                <div class="table-responsive">
+                    <div class="panel-body">
+                        @if($data['activeGoals']->count() > 0)
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>{{ __('Title') }}</th>
+                                    <th>{{ __('Progress') }}</th>
+                                    <th>{{ __('Outstanding days') }}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($data['activeGoals'] as $goal)
+                                    <tr>
+                                        <th class="align-middle">{{ $goal->title }}</th>
+                                        <td class="align-middle">
+                                            <div class="progress">
+                                                <div
+                                                    class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+                                                    style="width: {{ $goal->getGoalProgressPercent() }}%">
+                                                    {{ $goal->getGoalProgressPercent() }}%
+                                                </div>
+                                            </div>
+                                            <!-- End ./progress -->
+                                            {{ $goal->getGoalProgressPercent() }}% {{ __('Complete') }}
+                                        </td>
+                                        <td class="align-middle">{{ $goal->getOutstandingDays() }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
                     </div>
+                    <!-- End ./panel-body -->
                 </div>
-                <div class="panel-body">
-                    /// content here
-                </div>
+                <!-- End ./table-responsive -->
             </div>
+            <!-- End ./panel -->
         </div>
         <!-- End ./col.lg-6 -->
 

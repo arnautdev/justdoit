@@ -5,7 +5,7 @@
     <div class="login login-with-news-feed">
         <!-- begin news-feed -->
         <div class="news-feed">
-            <div class="news-image" style="background-image: url('/images/login-bg-2.jpg')"></div>
+            <div class="news-image" style="background-image: url('/images/theme/coming-soon/coming-soon-1.jpg')"></div>
             <div class="news-caption">
                 <h4 class="caption-title">{{ config('app.name') }}</h4>
                 <p>{{ __('App name intro text login page') }}</p>
