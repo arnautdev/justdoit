@@ -96,11 +96,22 @@
                         <th>{{ $data['goalAction']->title }}</th>
                         <td>{!! $data['goalAction']->getRepeatOnLabel() !!}</td>
                         <td>
+                            {{ Form::open(['route' => 'todo-list.store']) }}
                             <a href="{{ route('goal-action.edit', $data['goalAction']->id) }}"
                                class="btn btn-xs btn-primary">
                                 <i class="fa fa-pencil-alt"></i>&nbsp;
                                 {{ __('Edit') }}
                             </a>
+
+                            <input type="hidden" name="title" value="{{ $data['goal']->title }}"/>
+                            <input type="hidden" name="description" value="{{ $data['goalAction']->title }}"/>
+                            <input type="hidden" name="toDate" value="{{ date('Y-m-d') }}"/>
+                            <input type="hidden" name="goalActionId" value="{{ $data['goalAction']->id }}"/>
+                            <button type="submit" class="btn btn-xs btn-primary">
+                                <i class="fa fa-save"></i>&nbsp;
+                                {{ __('Create task') }}
+                            </button>
+                            {{ Form::close() }}
                         </td>
                     </tr>
                     </tbody>

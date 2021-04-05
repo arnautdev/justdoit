@@ -110,6 +110,7 @@ class TodoListController extends Controller
             'title' => 'required',
             'description' => 'required',
             'toDate' => 'required|date',
+            'goalActionId' => 'nullable',
         ]);
     }
 }
