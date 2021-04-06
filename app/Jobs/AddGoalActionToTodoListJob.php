@@ -50,6 +50,9 @@ class AddGoalActionToTodoListJob implements ShouldQueue
                     }
                 });
 
+                $createTodoLists = $createTodoLists->filter(function ($row) {
+                    return !is_null($row);
+                });
                 /// create todo list
                 if ($createTodoLists->count() > 0) {
                     $client->todoList()->createMany($createTodoLists);
