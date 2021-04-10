@@ -67,6 +67,14 @@ class Client extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function lifeCircle()
+    {
+        return $this->hasOne(LifeCircle::class, 'userId', 'id');
+    }
+
+    /**
      * Get active goals
      * @return \Illuminate\Database\Eloquent\Collection
      */

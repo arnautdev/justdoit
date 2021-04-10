@@ -33,7 +33,7 @@
 @endphp
 
 <div class="form-group">
-    {{ Form::label($name, __($label)) }}
+    <strong>{{ Form::label($name, __($label)) }}</strong>
     {{ Form::$type($name, $value, $attrs) }}
 </div>
 <!-- End ./form-group -->

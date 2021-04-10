@@ -1,4 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/plugins/chart.js/chart.esm.js": "/plugins/chart.js/chart.esm.js",
+    "/plugins/chart.js/chart.js": "/plugins/chart.js/chart.js",
+    "/plugins/chart.js/chart.min.js": "/plugins/chart.js/chart.min.js",
+    "/plugins/chart.js/helpers.esm.js": "/plugins/chart.js/helpers.esm.js"
 }

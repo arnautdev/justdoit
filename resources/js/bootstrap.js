@@ -13,12 +13,15 @@ try {
 
     require('../assets/js/demo/form-plugins.demo');
 
-
     /// plugins
     require('parsleyjs/src/parsley');
     require('bootstrap-datepicker/dist/js/bootstrap-datepicker');
     require('bootstrap-daterangepicker/daterangepicker');
     require('select2/dist/js/select2');
+
+    /// chart js
+    require('../assets/js/demo/chart-js.demo');
+
 } catch (e) {
     console.log(e);
 }

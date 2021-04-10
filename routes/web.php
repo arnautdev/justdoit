@@ -30,6 +30,10 @@ Route::middleware(['auth:client', 'auth'])->group(function () {
     Route::resource('group', 'GroupController');
     Route::resource('expense-settings', 'ExpenseSettingsController');
 
+    Route::get('/life-circle/getChartData', 'LifeCircleController@getChartData')->name('life-circle.getChartData');
+    Route::resource('life-circle', 'LifeCircleController')->only(['index', 'store']);
+    Route::resource('lifecircle-partition', 'LifeCirclePartitionController')->only(['edit', 'update']);
+
     Route::get('/expense-dynamic-price/{expenseSettings}/create', 'CreateDynamicPriceExpenseController@create')->name('dynamic-price.create');
     Route::post('/expense-dynamic-price/{expenseSettings}/store', 'CreateDynamicPriceExpenseController@store')->name('dynamic-price.store');
 

@@ -72,8 +72,8 @@ return [
         ],
         [
             'icon' => 'fa fa-circle-notch',
-            'title' => 'Live circle',
-            'route-name' => 'javascript:;',
+            'title' => 'Life circle',
+            'route-name' => 'life-circle.index',
             'caret' => false,
         ],
     ]
