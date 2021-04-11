@@ -84,9 +84,13 @@ class TodoListController extends Controller
             $todo_list->update(['isDone' => 'yes']);
         }
 
-        return response()->json([
-            'success' => true
-        ]);
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => true
+            ]);
+        }
+
+        return back()->with('success', __('success-update-message'));
     }
 
     /**
@@ -95,9 +99,12 @@ class TodoListController extends Controller
      * @param \App\Models\TodoList $todoList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TodoList $todoList)
+    public function destroy(TodoList $todo_list)
     {
-        //
+        if ($todo_list->exists && $todo_list->delete()) {
+            return back()->with('success', __('success-delete-message'));
+        }
+        return back()->with('error', __('error-delete-message'));
     }
 
     /**

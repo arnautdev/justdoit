@@ -4,8 +4,8 @@
 
     {{ $panel->start(['title' => 'Filters']) }}
     {{ Form::open(['method' => 'GET']) }}
-    <div class="row">
-        <div class="col-lg-3">
+    <div class="">
+        <div class="col-lg-2 no-padding-left">
             {{ $form->daterangepicker(['name' => 'toDate']) }}
         </div>
     </div>
@@ -43,7 +43,15 @@
                     <td>{{ $todoList->description }}</td>
                     <td>{{ $todoList->toDate }}</td>
                     <td>{{ __(ucfirst($todoList->isDone)) }}</td>
-                    <td></td>
+                    <td>
+                        {{ Form::open(['route' => ['todo-list.update', $todoList->id]]) }}
+                        @method('PUT')
+                        <button type="submit" class="btn btn-xs btn-success">
+                            <i class="fa fa-check-square"></i>&nbsp;
+                            {{ __('Mark as done') }}
+                        </button>
+                        {{ Form::close() }}
+                    </td>
                 </tr>
             @endforeach
             </tbody>
