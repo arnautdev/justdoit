@@ -124,6 +124,7 @@
                                     <th>{{ __('Title') }}</th>
                                     <th>{{ __('Progress') }}</th>
                                     <th>{{ __('Outstanding days') }}</th>
+                                    <th>{{ __('End date') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -142,6 +143,7 @@
                                             {{ $goal->getGoalProgressPercent() }}% {{ __('Complete') }}
                                         </td>
                                         <td class="align-middle">{{ $goal->getOutstandingDays() }}</td>
+                                        <td class="align-middle">{{ $goal->endDate }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
