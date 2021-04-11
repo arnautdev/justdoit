@@ -903,6 +903,10 @@ textarea.parsley-error {
 }
 
 /* Plugins css */
+.border-1 {
+  border: 1px solid #ccc;
+}
+
 .no-padding-left {
   padding-left: 0px !important;
 }

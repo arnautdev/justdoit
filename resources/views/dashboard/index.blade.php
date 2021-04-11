@@ -73,7 +73,7 @@
                             <div class="row">
                                 @foreach($data['expenses']->chunk(4) as $expenses)
                                     @foreach($expenses as $expense)
-                                        <div class="col-lg-3 col-6 no-padding">
+                                        <div class="col-lg-3 col-6 no-padding border-1">
                                             @if($expense->isDynamicAmount())
                                                 <a href="{{ route('dynamic-price.create', $expense->id) }}"
                                                    class="btn btn-default w-100 h-100 text-center no-radius add-expense-modal">
@@ -92,7 +92,7 @@
                                     @endforeach
                                 @endforeach
 
-                                <div class="col-lg-3 col-6 no-padding align-middle">
+                                <div class="col-lg-3 col-6 no-padding align-middle border-1">
                                     <a href="{{ route('new-expense.create') }}"
                                        class="btn btn-default w-100 h-100 text-center align-middle no-radius add-expense-modal">
                                         <i class="fa fa-plus"></i>&nbsp;
