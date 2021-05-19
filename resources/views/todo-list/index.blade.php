@@ -44,13 +44,15 @@
                     <td>{{ $todoList->toDate }}</td>
                     <td>{{ __(ucfirst($todoList->isDone)) }}</td>
                     <td>
-                        {{ Form::open(['route' => ['todo-list.update', $todoList->id]]) }}
-                        @method('PUT')
-                        <button type="submit" class="btn btn-xs btn-success">
-                            <i class="fa fa-check-square"></i>&nbsp;
-                            {{ __('Mark as done') }}
-                        </button>
-                        {{ Form::close() }}
+                        @if(!$todoList->isDone())
+                            {{ Form::open(['route' => ['todo-list.update', $todoList->id]]) }}
+                            @method('PUT')
+                            <button type="submit" class="btn btn-xs btn-success">
+                                <i class="fa fa-check-square"></i>&nbsp;
+                                {{ __('Mark as done') }}
+                            </button>
+                            {{ Form::close() }}
+                        @endif
                     </td>
                 </tr>
             @endforeach
